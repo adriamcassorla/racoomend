@@ -1,24 +1,24 @@
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import styles from './../styles/RecommendationList.module.css';
+import { AppProps } from 'next/dist/shared/lib/router/router';
+import { Recommendation } from '../types/Recommendation';
 
-const Nav = () => {
+
+
+const RecommendationList = ({ recommendations }: AppProps) => {
   return (
-    <header className={styles.fullbar}>
-      <div className={styles.logoContainer}>
-        <Link href="/" passHref={true}>
-          <>
-          <Image src="/Racoomend.png" alt="Racoomend logo" width={440} height={100} />
-          </>
-        </Link>
-      </div>
-
-      <Link href="/add" passHref>
-        <button className={styles.addButton}>Add Recommendation</button>
-      </Link>
-    </header>
+    <ul>
+      {recommendations ? recommendations.map((recommendation: Recommendation) => {
+          return (<li key={recommendation.id}>
+              <h1>
+              {recommendation.title}
+              </h1>
+              <p>{recommendation.oneline}</p>
+            </li>)
+      }) : null
+    }
+    </ul>
   )
 };
 
-export default Nav;
+export default RecommendationList;
