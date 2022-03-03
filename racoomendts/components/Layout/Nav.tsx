@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './../styles/Header.module.css'
+import styles from './../../styles/Header.module.css'
 
-const Header = () => {
+const Nav = () => {
   return (
     <header className={styles.fullbar}>
       <div className={styles.logoContainer}>
@@ -16,7 +16,7 @@ const Header = () => {
         <button className={styles.addButton}>Add Recommendation</button>
       </Link>
     </header>
-  );
+  )
 };
 
-export default Header;
+export default Nav;
