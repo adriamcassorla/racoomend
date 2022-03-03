@@ -8,7 +8,7 @@ export interface User {
   email: string;     
   firstname: string;  
   lastname: string;        
-  image?: string;           
-  groups: Group[];        
-  Recommendations: Recommendation[];
+  image: string | null;           
+  groups?: Group[];        
+  Recommendations?: Recommendation[];
 }
