@@ -6,6 +6,7 @@ import prisma from '../lib/prisma'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import { User } from '../types/User'
 import Header from '../components/Header'
+// import { Flex, Heading, Input, Button } from '@chakra-ui/react'
 
 export const getStaticProps: GetStaticProps = async () => {
   const users = await prisma.user.findMany({});
@@ -21,6 +22,15 @@ const Home = ({ users }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      {/* <Flex height="40vh" alignItems="center" justifyContent="center">
+        <Flex direction="column" background="gray.100" p={12} rounded={6}>
+          <Heading mb={6}>Log in</Heading>
+          <Input placeholder="email@provider.com" variant="filled" mb={3} type="email"/>
+          <Input placeholder="********" variant="filled" mb={6} type="password"/>
+          <Button colorScheme="teal">Log in</Button>
+        </Flex>
+
+      </Flex> */}
       <ul>
         {users ? users.map((user: User) => {
           return <li key={user.id}>{user.email}</li>
