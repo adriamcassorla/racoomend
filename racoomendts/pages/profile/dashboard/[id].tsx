@@ -1,8 +1,8 @@
 import type { GetServerSideProps } from 'next'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import Head from 'next/head'
-import GroupList from '../../../components/GroupList'
-import RecommendationList from '../../../components/RecommendationList'
+import GroupList from '../../../components/Dashboard/GroupList'
+import RecommendationList from '../../../components/Dashboard/RecommendationList'
 import prisma from '../../../lib/prisma'
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -29,7 +29,7 @@ const Dashboard = ({ recommendations, groups }: AppProps) => {
   return (
     <div>
       <Head>
-        <title>Sign up</title>
+        <title>Dashboard</title>
         <meta name="Dashboard" content="Interact with recommendations" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

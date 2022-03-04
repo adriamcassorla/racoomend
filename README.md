@@ -8,3 +8,5 @@ Context.params.whatever to access the dynamic params of your route (passing cont
 From getMiscoProps return an object { props: { The props you want to pass to your component. }}
 
 GetServerSideProps allows you to run without getStaticPaths, for GETSTATICPROPS you need GETSTATICPATHS.
+
+CanNot use GetServerSideProps in components that are not pages (Prisma can not be used in the browser)

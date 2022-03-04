@@ -1,10 +1,7 @@
-import type { GetServerSideProps } from 'next'
 import { AppProps } from 'next/dist/shared/lib/router/router'
-import Head from 'next/head'
-import prisma from '../lib/prisma'
-import { Group } from '../types/Group'
+import { Group } from '../../types/Group'
 
-const GroupList = ({ groups }: AppProps) => {
+const CategorySelector = ({ groups }: AppProps) => {
   console.log(groups);
   console.log(groups.users)
   return (
@@ -22,4 +19,4 @@ const GroupList = ({ groups }: AppProps) => {
   )
 }
 
-export default GroupList
+export default CategorySelector
