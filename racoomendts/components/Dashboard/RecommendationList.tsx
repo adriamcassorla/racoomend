@@ -1,21 +1,34 @@
 import React from 'react';
 import styles from './../styles/RecommendationList.module.css';
 import { AppProps } from 'next/dist/shared/lib/router/router';
-import { Recommendation } from '../types/Recommendation';
+import { Recommendation } from '../../types/Recommendation';
 
 
 
-const RecommendationList = ({ recommendations }: AppProps) => {
+const RecommendationList = ({ recommendations, category }: AppProps) => {
+  
+  const noCategory = () => {
+    return (
+      <h3>Select a Category from the list above</h3>
+    )
+  }
+
   return (
     <ul>
-      {recommendations ? recommendations.map((recommendation: Recommendation) => {
+      { 
+      !category ? noCategory() :
+      !recommendations ? null :
+      recommendations.filter((recommendation: Recommendation) => {
+        return recommendation.categories === category;
+      }).map((recommendation: Recommendation) => {
+          console.log(recommendation.categories);
           return (<li key={recommendation.id}>
               <h1>
               {recommendation.title}
               </h1>
               <p>{recommendation.oneline}</p>
             </li>)
-      }) : null
+      }) 
     }
     </ul>
   )

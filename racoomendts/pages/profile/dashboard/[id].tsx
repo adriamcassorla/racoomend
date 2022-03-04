@@ -1,10 +1,17 @@
-import type { GetServerSideProps } from 'next'
+// Functionality types, components types, functions and DB model.
 import { AppProps } from 'next/dist/shared/lib/router/router'
+import type { GetServerSideProps } from 'next'
+import prisma from '../../../lib/prisma'
+import { useState } from 'react'
+
+// Components to load on the page and styles.
 import Head from 'next/head'
+import CategorySelector from '../../../components/Dashboard/CategorySelector'
 import GroupList from '../../../components/Dashboard/GroupList'
 import RecommendationList from '../../../components/Dashboard/RecommendationList'
-import prisma from '../../../lib/prisma'
+import styles from '../../../styles/Dashboard.module.css';
 
+// Getting the required Props from DB.
 export const getServerSideProps: GetServerSideProps = async () => {
   const recommendations = await prisma.recommendation.findMany({
     where: {
@@ -26,15 +33,25 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 const Dashboard = ({ recommendations, groups }: AppProps) => {
+
+  const [category, setCategory] = useState('');
+
+  console.log(category);
+
   return (
-    <div>
+    <div className={styles.dashboardContainer}>
       <Head>
         <title>Dashboard</title>
         <meta name="Dashboard" content="Interact with recommendations" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <GroupList groups={groups}/>
-      <RecommendationList recommendations={recommendations}/>
+      <div className={styles.leftContainer}>
+        <GroupList groups={groups}/>
+      </div>
+      <div className={styles.rightContainer}>
+        <CategorySelector setCategory={setCategory}/>
+        <RecommendationList recommendations={recommendations} category={category}/>
+      </div>
     </div>
   )
 }

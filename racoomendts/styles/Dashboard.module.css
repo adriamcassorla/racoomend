@@ -1,0 +1,17 @@
+.dashboardContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftContainer {
+  flex: 1;
+}
+
+.rightContainer {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

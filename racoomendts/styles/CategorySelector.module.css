@@ -1,0 +1,15 @@
+.list {
+  list-style-type: none;
+  display: flex;
+
+}
+
+.category {
+  margin: 10px;
+  padding: 10px;
+  background-color: #ededed;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

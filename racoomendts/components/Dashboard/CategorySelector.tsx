@@ -1,20 +1,19 @@
 import { AppProps } from 'next/dist/shared/lib/router/router'
-import { Group } from '../../types/Group'
+import React from 'react'
+import styles from './../../styles/CategorySelector.module.css'
 
-const CategorySelector = ({ groups }: AppProps) => {
-  console.log(groups);
-  console.log(groups.users)
+const CategorySelector = ({ setCategory }: AppProps) => {
+
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setCategory(e.currentTarget.value);
+  }
+
   return (
-    <ul>
-      {groups ? groups.map((group: Group) => {
-          return (<li key={group.id}>
-              <h1>
-              {group.name}
-              </h1>
-              <p>{group.users}</p>
-            </li>)
-      }) : null
-    }
+    <ul className={styles.list}>
+      <li ><button className={styles.category} value="MOVIE" onClick={onClick}>Movies</button></li>
+      <li ><button className={styles.category} value="BOOK" onClick={onClick}>Books</button></li>
+      <li ><button className={styles.category} value="RESTAURANT" onClick={onClick}>Restaurants</button></li>
+      <li ><button className={styles.category} value="ARTICLE" onClick={onClick}>Articles</button></li>
     </ul>
   )
 }

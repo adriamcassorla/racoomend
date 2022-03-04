@@ -5,8 +5,6 @@ import prisma from '../../lib/prisma'
 import { Group } from '../../types/Group'
 
 const GroupList = ({ groups }: AppProps) => {
-  console.log(groups);
-  console.log(groups.users)
   return (
     <ul>
       {groups ? groups.map((group: Group) => {
