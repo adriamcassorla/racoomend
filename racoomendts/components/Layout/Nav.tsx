@@ -13,7 +13,7 @@ const Nav = () => {
   return (
     <header className={styles.fullbar}>
       <div className={styles.logoContainer}>
-        <Link href="/" passHref={true}>
+        <Link href="/add" passHref={true}>
           <>
           <Image src="/Racoomend.png" alt="Racoomend logo" width={440} height={100} />
           </>
