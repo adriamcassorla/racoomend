@@ -3,8 +3,11 @@ import { FormEvent } from 'react'
 import styles from '../styles/Login.module.css'
 import prisma from '../lib/prisma'
 import { AppProps } from 'next/dist/shared/lib/router/router'
+
+import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
+
 export const getStaticProps: GetStaticProps = async () => {
   return { props: {}}
 }
@@ -31,6 +34,7 @@ const Login = ({ }: AppProps) => {
         <label htmlFor='password'>Password</label>
         <input className={styles.formInput} id='password' name='password' type="password" placeholder="Tell me your secrets" required/>
         <button type='submit' className={styles.loginButton}>Log In</button>
+        <p className={styles.signupLink}>Don{"'"}t have an account? <Link href="/signup"><a>Sign up!</a></Link></p>
       </form>
     </div>
   )

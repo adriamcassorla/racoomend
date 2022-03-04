@@ -2,26 +2,50 @@ import { useState } from "react";
 import styles from "../styles/Add.module.css"
 import { AppProps } from "next/dist/shared/lib/router/router";
 import prisma from "../lib/prisma";
+import { useRouter } from "next/router";
 
 import Head from "next/head";
 import Image from "next/image";
+import { string } from "prop-types";
+import { Category } from "@prisma/client";
+
 
 const Add = (props: AppProps) => {
 
+  const router = useRouter();
   const [title, setTitle] = useState('');
   const [oneline, setOneline] = useState('');
   const [url, setUrl] = useState('');
   const [categories, setCategories] = useState('ARTICLE');
 
-  const addRecommendation = () => {
-    
+  const addRecommendation = async (e: React.FormEvent ) => {
+    e.preventDefault()
+    try {
+      const rawRecommendation = await fetch('/api/recommendation/newRecommend', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          title, oneline, url, categories, 
+          authorId: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc',
+          groupId: '32c8c42d-8449-4cbd-b419-07ca48680da2', })
+      })
+      const recommendation = rawRecommendation.json();
+      console.log(recommendation);
+      router.push('/profile/dashboard/2')
+      return recommendation;
+
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Log in</title>
-        <meta name="Login" content="Log in to Racoomend" />
+        <title>Add Recommendation</title>
+        <meta name="Add a new Recommendation" content="Recommend something you like to your friends" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image src="/raccoon.png" alt="Racoomend logo" width={200} height={143} />

@@ -6,10 +6,24 @@
 }
 
 .addButton {
-  background-color: grey;
-  margin-right: 40px;
+  background-color: #dadada;
+  border: 0.2px solid;
+  padding: 8px;
+  border-radius: 8px;
+  transition:all ease-in-out 0.2;
+}
+
+.addButton:hover {
+  transform: scale(1.02);
+  background-color: #ededed;
+}
+
+.addButton:active {
+  transform: scale(0.97);
+  opacity: 0.8;
 }
 
 .logoContainer {
   max-width: 40%;
+  cursor: pointer;
 }
