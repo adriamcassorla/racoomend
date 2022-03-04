@@ -1,4 +1,5 @@
 import { Group } from "../../types/Group"
+import styles from "./../../styles/GroupComponent.module.css"
 
 type Props = {
   setGroup: Function,
@@ -13,7 +14,7 @@ const GroupComponent = ({setGroup, group, currentGroup}: Props) => {
   }
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} className={styles.groupContainer}>
       <h3>{group.name}</h3>
     </div>
   )

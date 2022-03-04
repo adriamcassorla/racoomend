@@ -1,11 +1,13 @@
 .dashboardContainer {
-  width: 100%;
+  height: 60vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 }
 
 .leftContainer {
+  margin-left: 50px;
   flex: 1;
 }
 
