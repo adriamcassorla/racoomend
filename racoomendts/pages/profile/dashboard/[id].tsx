@@ -15,7 +15,7 @@ import styles from '../../../styles/Dashboard.module.css';
 export const getServerSideProps: GetServerSideProps = async () => {
   const recommendations = await prisma.recommendation.findMany({
     where: {
-      authorId: 'b14741bc-53c2-4945-8f92-0aa582d517a0'
+      authorId: '1eb29bd1-e65c-4126-815b-114591aa7cc2'
     }
   })
 
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     where: {
       users: {
         some: {
-          id: 'b14741bc-53c2-4945-8f92-0aa582d517a0'
+          id: '1eb29bd1-e65c-4126-815b-114591aa7cc2'
         }
       } 
     }
@@ -35,8 +35,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Dashboard = ({ recommendations, groups }: AppProps) => {
 
   const [category, setCategory] = useState('');
-
+  const [currentGroup, setGroup] = useState('');
   console.log(category);
+  console.log(currentGroup);
 
   return (
     <div className={styles.dashboardContainer}>

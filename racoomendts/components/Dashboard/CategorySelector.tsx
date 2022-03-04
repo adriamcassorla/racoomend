@@ -2,7 +2,11 @@ import { AppProps } from 'next/dist/shared/lib/router/router'
 import React from 'react'
 import styles from './../../styles/CategorySelector.module.css'
 
-const CategorySelector = ({ setCategory }: AppProps) => {
+type Props = {
+  setCategory: Function
+}
+
+const CategorySelector = ({ setCategory }: Props) => {
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setCategory(e.currentTarget.value);

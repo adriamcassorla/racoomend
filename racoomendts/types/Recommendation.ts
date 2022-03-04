@@ -12,6 +12,6 @@ export interface Recommendation {
   image?: string;
   author: User;
   authorId: string;
-  categories: string[];
+  categories: string;
   groups: Group[];
 }

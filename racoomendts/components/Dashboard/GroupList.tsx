@@ -4,7 +4,11 @@ import Head from 'next/head'
 import prisma from '../../lib/prisma'
 import { Group } from '../../types/Group'
 
-const GroupList = ({ groups }: AppProps) => {
+type Props = {
+  groups: Group[];
+}
+
+const GroupList = ({ groups }: Props) => {
   return (
     <ul>
       {groups ? groups.map((group: Group) => {
