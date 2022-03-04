@@ -6,9 +6,10 @@ import { Recommendation } from '../../types/Recommendation';
 type Props = {
   recommendations: Recommendation[],
   category: string,
+  currentGroup: string,
 }
 
-const RecommendationList = ({ recommendations, category }: Props) => {
+const RecommendationList = ({ recommendations, category, currentGroup }: Props) => {
   
   const noCategory = () => {
     return (
@@ -23,7 +24,11 @@ const RecommendationList = ({ recommendations, category }: Props) => {
       !recommendations ? null :
       recommendations.filter((recommendation: Recommendation) => {
         return recommendation.categories === category;
-      }).map((recommendation: Recommendation) => {
+      })
+      .filter((recommendation: Recommendation) => {
+        return recommendation.groupId === currentGroup
+      })
+      .map((recommendation: Recommendation) => {
           console.log(recommendation.categories);
           return (<li key={recommendation.id}>
               <h1>

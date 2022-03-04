@@ -42,7 +42,8 @@ model Recommendation {
   author     User       @relation(fields: [authorId], references: [id])
   authorId   String
   categories Category   @default(ARTICLE)
-  groups     Group[]
+  group      Group      @relation(fields: [groupId], references: [id])
+  groupId    String
 }
 
 enum Category {

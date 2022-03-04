@@ -13,5 +13,6 @@ export interface Recommendation {
   author: User;
   authorId: string;
   categories: string;
-  groups: Group[];
+  group: Group;
+  groupId: string;
 }

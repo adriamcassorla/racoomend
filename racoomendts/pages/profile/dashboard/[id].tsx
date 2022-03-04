@@ -15,27 +15,26 @@ import styles from '../../../styles/Dashboard.module.css';
 export const getServerSideProps: GetServerSideProps = async () => {
   const recommendations = await prisma.recommendation.findMany({
     where: {
-      authorId: '1eb29bd1-e65c-4126-815b-114591aa7cc2'
+      authorId: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc'
     }
   })
-
   const groups = await prisma.group.findMany({
     where: {
       users: {
         some: {
-          id: '1eb29bd1-e65c-4126-815b-114591aa7cc2'
+          id: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc'
         }
       } 
     }
   })
-
   return { props: { recommendations, groups }}
 }
 
 const Dashboard = ({ recommendations, groups }: AppProps) => {
 
   const [category, setCategory] = useState('');
-  const [currentGroup, setGroup] = useState('');
+  const [currentGroup, setGroup] = useState('96ecde36-0462-4e11-8841-3bb2d882f7b1');
+
   console.log(category);
   console.log(currentGroup);
 
@@ -47,11 +46,11 @@ const Dashboard = ({ recommendations, groups }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.leftContainer}>
-        <GroupList groups={groups}/>
+        <GroupList groups={groups} currentGroup={currentGroup} setGroup={setGroup}/>
       </div>
       <div className={styles.rightContainer}>
-        <CategorySelector setCategory={setCategory}/>
-        <RecommendationList recommendations={recommendations} category={category}/>
+        <CategorySelector setCategory={setCategory} category={category}/>
+        <RecommendationList recommendations={recommendations} category={category} currentGroup={currentGroup}/>
       </div>
     </div>
   )

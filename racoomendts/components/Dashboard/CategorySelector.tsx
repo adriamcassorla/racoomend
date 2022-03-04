@@ -4,9 +4,10 @@ import styles from './../../styles/CategorySelector.module.css'
 
 type Props = {
   setCategory: Function
+  category: string;
 }
 
-const CategorySelector = ({ setCategory }: Props) => {
+const CategorySelector = ({ setCategory, category }: Props) => {
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setCategory(e.currentTarget.value);

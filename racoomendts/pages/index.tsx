@@ -12,6 +12,7 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Home = ({ users }: AppProps) => {
+  
   return (
     <div className={styles.container}>
       <Head>
