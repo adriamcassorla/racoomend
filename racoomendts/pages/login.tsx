@@ -3,6 +3,7 @@ import { FormEvent } from 'react'
 import styles from '../styles/Login.module.css'
 import prisma from '../lib/prisma'
 import { AppProps } from 'next/dist/shared/lib/router/router'
+import { signIn } from 'next-auth/react'
 
 import Link from 'next/link'
 import Head from 'next/head'
@@ -33,7 +34,7 @@ const Login = ({ }: AppProps) => {
         <input className={styles.formInput} id="name" name="name" type="email" autoComplete="email" placeholder="email@youremail.com" required/>
         <label htmlFor='password'>Password</label>
         <input className={styles.formInput} id='password' name='password' type="password" placeholder="Tell me your secrets" required/>
-        <button type='submit' className={styles.loginButton}>Log In</button>
+        <button type='submit' className={styles.loginButton} onClick={() => signIn()}>Log In</button>
         <p className={styles.signupLink}>Don{"'"}t have an account? <Link href="/signup"><a>Sign up!</a></Link></p>
       </form>
     </div>
