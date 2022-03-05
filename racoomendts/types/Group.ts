@@ -6,6 +6,6 @@ export interface Group {
   createdAt: Date;
   updatedAt: Date;
   name: string;
-  users: User[];
-  recommendations: Recommendation[]
+  users?: User[];
+  recommendations?: Recommendation[]
 }

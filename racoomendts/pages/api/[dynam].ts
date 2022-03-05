@@ -13,7 +13,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  if ( req.method === 'POST') {
+  if ( req.method === 'GET') {
     try {
       const id = req.query.dynam as string;
         const user = await prisma.user.findUnique({

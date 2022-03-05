@@ -9,10 +9,9 @@ export interface Recommendation {
   title: string;
   oneline: string;
   url: string;
-  image?: string;
-  author: User;
+  author?: User;
   authorId: string;
   categories: string;
-  group: Group;
+  group?: Group;
   groupId: string;
 }

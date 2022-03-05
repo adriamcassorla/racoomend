@@ -52,10 +52,13 @@ const Add = (props: AppProps) => {
       <form onSubmit={addRecommendation} className={styles.addForm}>
         <label htmlFor="title">Title</label>
         <input className={styles.formInput} id="title" name="title" type="text" placeholder="Title your recommendation" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+
         <label htmlFor='oneline'>Oneline</label>
         <input className={styles.formInput} id='oneline' name='oneline' type="text" placeholder="Short description of your recommendation" value={oneline} onChange={(e) => setOneline(e.target.value)} required/>
+
         <label htmlFor='url'>URL</label>
         <input className={styles.formInput} id='url' name='url' type="text" placeholder="Provide a url with more relevant info" value={url} onChange={(e) => setUrl(e.target.value)}/>
+        
         <label htmlFor="categories">Choose a category</label>
         <select id="categories"name="gender" value={categories} onChange={(e) => setCategories(e.target.value)} required>
           <option value="ARTICLE">Article</option>
