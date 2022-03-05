@@ -1,0 +1,9 @@
+.recommendationContainer {
+  display: flex;
+  align-items: center;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  justify-self: flex-start;
+}

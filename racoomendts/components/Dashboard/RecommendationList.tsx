@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../../styles/RecommendationList.module.css';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import { Recommendation } from '../../types/Recommendation';
+import RecommendationComponent from './RecommendationComponent';
 
 type Props = {
   recommendations: Recommendation[],
@@ -29,12 +30,8 @@ const RecommendationList = ({ recommendations, category, currentGroup }: Props) 
         return recommendation.groupId === currentGroup
       })
       .map((recommendation: Recommendation) => {
-          console.log(recommendation.categories);
           return (<li key={recommendation.id}>
-              <h1>
-              {recommendation.title}
-              </h1>
-              <p>{recommendation.oneline}</p>
+              <RecommendationComponent recommendation={recommendation}/>
             </li>)
       }) 
     }
