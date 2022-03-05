@@ -17,7 +17,7 @@ import { Group } from '../../../types/Group'
 // Getting the required Props from DB.
 export const getServerSideProps: GetServerSideProps = async ( {params} ) => {
 
-  const email = params?.email;
+  const email = params?.id;
   const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
   const data = await res.json()
   console.log(data);
