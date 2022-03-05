@@ -10,34 +10,37 @@ import CategorySelector from '../../../components/Dashboard/CategorySelector'
 import GroupList from '../../../components/Dashboard/GroupList'
 import RecommendationList from '../../../components/Dashboard/RecommendationList'
 import styles from '../../../styles/Dashboard.module.css';
+import { User } from '../../../types/User'
+import { Recommendation } from '../../../types/Recommendation'
+import { Group } from '../../../types/Group'
 
 // Getting the required Props from DB.
-export const getServerSideProps: GetServerSideProps = async () => {
-  const recommendations = await prisma.recommendation.findMany({
-    where: {
-      authorId: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc'
-    }
-  })
-  const groups = await prisma.group.findMany({
-    where: {
-      users: {
-        some: {
-          id: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc'
-        }
-      } 
-    }
-  })
-  return { props: { recommendations, groups }}
+export const getServerSideProps: GetServerSideProps = async ( {params} ) => {
+
+  const email = params?.email;
+  const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
+  const data = await res.json()
+  console.log(data);
+  const { user, recommendations, groups} = data
+  return { props: { user, recommendations, groups }}
 }
 
-const Dashboard = ({ recommendations, groups }: AppProps) => {
+type DashboardProps = {
+  user: User,
+  recommendations: Recommendation[],
+  groups: Group[],
+}
+
+const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
 
   const [category, setCategory] = useState('');
   const [currentGroup, setGroup] = useState('96ecde36-0462-4e11-8841-3bb2d882f7b1');
 
   console.log(category);
   console.log(currentGroup);
-
+  console.log(user);
+  console.log(recommendations);
+  console.log(groups);
   return (
     <div className={styles.dashboardContainer}>
       <Head>

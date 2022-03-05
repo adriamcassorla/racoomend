@@ -65,7 +65,7 @@ export default function Component() {
   const { data: session } = useSession()
   if (session) {
     console.log(session);
-    router.push('/profile/dasboard/')
+    router.push(`/profile/dashboard/${session.user?.email}`)
     
     return (
       <>
