@@ -1,8 +1,12 @@
 // Functionality types, components types, functions and DB model.
-import { AppProps } from 'next/dist/shared/lib/router/router'
 import type { GetServerSideProps } from 'next'
-import prisma from '../../../lib/prisma'
+import { User } from '../../../types/User'
+import { Group } from '../../../types/Group'
+import { Recommendation } from '../../../types/Recommendation'
 import { useContext, useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import CurrentUserContext from '../../../utils/context'
+import { useRouter } from 'next/router'
 
 // Components to load on the page and styles.
 import Head from 'next/head'
@@ -10,10 +14,7 @@ import CategorySelector from '../../../components/Dashboard/CategorySelector'
 import GroupList from '../../../components/Dashboard/GroupList'
 import RecommendationList from '../../../components/Dashboard/RecommendationList'
 import styles from '../../../styles/Dashboard.module.css';
-import { User } from '../../../types/User'
-import { Recommendation } from '../../../types/Recommendation'
-import { Group } from '../../../types/Group'
-import CurrentUserContext from '../../../utils/context'
+import ModalComponent from '../../../components/ModalComponent'
 
 // Getting the required Props from DB.
 export const getServerSideProps: GetServerSideProps = async ( {params} ) => {
@@ -32,15 +33,28 @@ type DashboardProps = {
 }
 
 const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
+
+  // Taking email from route.
+  const router = useRouter();
+  const { id } = router.query;
+
+  // Checking if there is a session to act accordingly
+  const { data: session } = useSession();
   //@ts-ignore
   const { currentUser, setUser } = useContext(CurrentUserContext);
   const [category, setCategory] = useState('');
   const [currentGroup, setGroup] = useState('96ecde36-0462-4e11-8841-3bb2d882f7b1');
+  const [showGroupDialog, setGroupDialog] = useState(false);
+  const [showReccomendationDialog, setRecommendationDialog] = useState(false);
 
   useEffect(() => {
     setUser(user);
+    
   }, [])
-
+  console.log(session);
+  console.log(id);
+  //@ts-ignore
+  if (!session || (session && session.user.email !== id)) return ( <div className={styles.notAllowed}><h2>Not allowed to access this context</h2></div> )
   return (
     <div className={styles.dashboardContainer}>
       <Head>
@@ -49,12 +63,16 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.leftContainer}>
-        <GroupList groups={groups} currentGroup={currentGroup} setGroup={setGroup}/>
+        <GroupList setGroupDialog={setGroupDialog} groups={groups} currentGroup={currentGroup} setGroup={setGroup}/>
       </div>
       <div className={styles.rightContainer}>
         <CategorySelector setCategory={setCategory} category={category}/>
-        <RecommendationList recommendations={recommendations} category={category} currentGroup={currentGroup}/>
+        <RecommendationList setRecommendationDialog={setRecommendationDialog} recommendations={recommendations} category={category} currentGroup={currentGroup} />
       </div>
+
+      <ModalComponent category="Group" showDialog={showGroupDialog} setDialog={setGroupDialog}/>
+      <ModalComponent category="Recommendation" showDialog={showReccomendationDialog} setDialog={setRecommendationDialog}/>
+
     </div>
   )
 }

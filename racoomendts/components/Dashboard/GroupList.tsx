@@ -4,14 +4,16 @@ import styles from './../../styles/GroupList.module.css'
 // Components
 import Head from 'next/head'
 import GroupComponent from './GroupComponent';
+import CreateGroup from './Buttons/CreateGroup';
 
 type Props = {
   groups: Group[];
   currentGroup: string;
   setGroup: Function;
+  setGroupDialog: Function;
 }
 
-const GroupList = ({ groups, currentGroup, setGroup }: Props) => {
+const GroupList = ({ setGroupDialog, groups, currentGroup, setGroup }: Props) => {
   return (
     <div className={styles.groupListContainer}>
       <div className={styles.groupTitle}>
@@ -28,6 +30,9 @@ const GroupList = ({ groups, currentGroup, setGroup }: Props) => {
               }) : null
             }
         </ul>
+      </div>
+      <div className={styles.groupBotton}>
+        <CreateGroup setGroupDialog={setGroupDialog} />
       </div>
     </div>
   )

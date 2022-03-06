@@ -3,14 +3,16 @@ import styles from '../../styles/RecommendationList.module.css';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import { Recommendation } from '../../types/Recommendation';
 import RecommendationComponent from './RecommendationComponent';
+import CreateReccomendation from './Buttons/Create Recommendation';
 
 type Props = {
   recommendations: Recommendation[],
   category: string,
   currentGroup: string,
+  setRecommendationDialog: Function,
 }
 
-const RecommendationList = ({ recommendations, category, currentGroup }: Props) => {
+const RecommendationList = ({ recommendations, category, currentGroup, setRecommendationDialog }: Props) => {
   
   const noCategory = () => {
     return (
@@ -19,23 +21,26 @@ const RecommendationList = ({ recommendations, category, currentGroup }: Props) 
   }
 
   return (
-    <ul>
-      { 
-      !category ? noCategory() :
-      !recommendations ? null :
-      recommendations.filter((recommendation: Recommendation) => {
-        return recommendation.categories === category;
-      })
-      .filter((recommendation: Recommendation) => {
-        return recommendation.groupId === currentGroup
-      })
-      .map((recommendation: Recommendation) => {
+    <div>
+      <ul>
+        { 
+        !category ? noCategory() :
+        !recommendations ? null :
+        recommendations.filter((recommendation: Recommendation) => {
+          return recommendation.categories === category;
+        })
+        .filter((recommendation: Recommendation) => {
+          return recommendation.groupId === currentGroup
+        })
+        .map((recommendation: Recommendation) => {
           return (<li key={recommendation.id}>
-              <RecommendationComponent recommendation={recommendation}/>
-            </li>)
-      }) 
-    }
-    </ul>
+                <RecommendationComponent recommendation={recommendation}/>
+              </li>)
+        }) 
+      }
+      </ul>
+      <CreateReccomendation setRecommendationDialog={setRecommendationDialog}/>
+    </div>
   )
 };
 
