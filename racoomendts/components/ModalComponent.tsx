@@ -4,6 +4,7 @@ import "@reach/dialog/styles.css";
 import styles from './../styles/ModalComponent.module.css'
 import Add from "../pages/add";
 import AddGroup from "../pages/group/addGroup";
+import { color } from "@chakra-ui/react";
 
 type Props = {
   category: string,
@@ -18,7 +19,7 @@ const ModalComponent = ( {category, showDialog, setDialog}: Props ) => {
   if (category === 'Group') {
     return (
       <div>
-        <Dialog isOpen={showDialog} onDismiss={close} aria-label="New Group" className={styles.dialog}>
+        <Dialog isOpen={showDialog} onDismiss={close} aria-label="New Group" style={{width: 'fit-content',height: '0', background: 'transparent'}}>
           <AddGroup />
         </Dialog>
       </div>
@@ -27,7 +28,7 @@ const ModalComponent = ( {category, showDialog, setDialog}: Props ) => {
   return (
     <div>
 
-      <Dialog isOpen={showDialog} onDismiss={close} aria-label="New recommendation">
+      <Dialog isOpen={showDialog} onDismiss={close} aria-label="New recommendation" style={{width: 'fit-content',height: '0', background: 'transparent'}}>
         <Add />
       </Dialog>
     </div>
