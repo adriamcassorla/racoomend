@@ -1,13 +1,16 @@
 .list {
   list-style-type: none;
   display: flex;
-
+  background-color: #384047;
+  border-radius: 5px;
+  padding: 15px;
 }
 
 .category {
+  font-weight: 600;
   margin: 10px;
   padding: 10px;
-  background-color: #ededed;
+  background-color: #dadada;
   border: none;
   border-radius: 5px;
   cursor: pointer;

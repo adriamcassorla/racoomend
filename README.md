@@ -7,6 +7,10 @@ Context.params.whatever to access the dynamic params of your route (passing cont
 
 From getMiscoProps return an object { props: { The props you want to pass to your component. }}
 
+Create a type for each component props.
+
 GetServerSideProps allows you to run without getStaticPaths, for GETSTATICPROPS you need GETSTATICPATHS.
 
 CanNot use GetServerSideProps in components that are not pages (Prisma can not be used in the browser)
+
+Two brackets around a spread route [[...id]] includes the index to the route, with just one square bracker index is not included.
