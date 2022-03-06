@@ -23,7 +23,7 @@ const Home = ({ users }: AppProps) => {
       </Head>
       <div>
         <h3>Exhausted of spending more time choosing a netflix movie than watching it?</h3>
-        <h3>Tricked by TripAdvisor to go to some dirty restaurant? </h3>
+        <h3>Wanted to try a new delivery restaurant but get losted in the endless options?  </h3>
         <h2>Trust your friends, they know you better.</h2>
         <Link href='/profile/dashboard/2' passHref> 
           <div>

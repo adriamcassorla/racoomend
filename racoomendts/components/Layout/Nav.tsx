@@ -15,9 +15,9 @@ const Nav = () => {
         </Link>
       </div>
 
-      <Link href="/add" passHref>
+      {/* <Link href="/add" passHref>
         <button className={styles.addButton}>Add Recommendation</button>
-      </Link>
+      </Link> */}
     </header>
   )
 };

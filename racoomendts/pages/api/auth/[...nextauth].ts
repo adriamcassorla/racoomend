@@ -2,7 +2,6 @@ import NextAuth from "next-auth"
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import prisma from "../../../lib/prisma";
-import { signIn } from "next-auth/react";
 
 export default NextAuth({
   // Configure one or more authentication providers
@@ -12,8 +11,8 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
     GoogleProvider({
-      clientId: '250833474734-l5q2p5guj9vlnufvtquk2r51t7j88vm7.apps.googleusercontent.com',
-      clientSecret: "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",
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     
     // ...add more providers here
