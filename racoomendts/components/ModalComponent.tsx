@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog"
 import "@reach/dialog/styles.css";
+import styles from './../styles/ModalComponent.module.css'
+import Add from "../pages/add";
+import AddGroup from "../pages/group/addGroup";
 
 type Props = {
   category: string,
@@ -12,14 +15,11 @@ type Props = {
 const ModalComponent = ( {category, showDialog, setDialog}: Props ) => {
   const open = () => setDialog(true);
   const close = () => setDialog(false);
-  if (category === 'group') {
+  if (category === 'Group') {
     return (
       <div>
-        <Dialog isOpen={showDialog} onDismiss={close} aria-label="New recommendation">
-          <button className="close-button" onClick={close}>
-            <span aria-hidden>×</span>
-          </button>
-          <p>Hello there. I am a dialog for adding groups</p>
+        <Dialog isOpen={showDialog} onDismiss={close} aria-label="New Group" className={styles.dialog}>
+          <AddGroup />
         </Dialog>
       </div>
     );
@@ -28,10 +28,7 @@ const ModalComponent = ( {category, showDialog, setDialog}: Props ) => {
     <div>
 
       <Dialog isOpen={showDialog} onDismiss={close} aria-label="New recommendation">
-        <button className="close-button" onClick={close}>
-          <span aria-hidden>×</span>
-        </button>
-        <p>Hello there. I am a dialog for adding recommendations</p>
+        <Add />
       </Dialog>
     </div>
   );

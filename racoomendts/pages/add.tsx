@@ -1,16 +1,13 @@
 import { useState } from "react";
 import styles from "../styles/Add.module.css"
 import { AppProps } from "next/dist/shared/lib/router/router";
-import prisma from "../lib/prisma";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
 import Image from "next/image";
-import { string } from "prop-types";
-import { Category } from "@prisma/client";
 
 
-const Add = (props: AppProps) => {
+const Add = () => {
 
   const router = useRouter();
   const [title, setTitle] = useState('');
@@ -33,7 +30,6 @@ const Add = (props: AppProps) => {
       })
       const recommendation = rawRecommendation.json();
       console.log(recommendation);
-      router.push('/profile/dashboard/2')
       return recommendation;
 
     } catch (e) {
