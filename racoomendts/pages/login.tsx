@@ -65,7 +65,7 @@ export default function Component() {
   const { data: session } = useSession()
   if (session) {
     console.log(session);
-    router.push(`/profile/dashboard/${session.user?.email}`)
+    // router.push(`/profile/dashboard/${session.user?.email}`)
     
     return (
       <>
@@ -77,7 +77,7 @@ export default function Component() {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn('github')}>Sign in</button>
+      <button onClick={() => signIn()}>Sign in</button>
     </>
   )
 }

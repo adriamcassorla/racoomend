@@ -1,8 +1,8 @@
-import CategorySelector from "../components/Dashboard/CategorySelector";
+import ModalComponent from "../components/ModalComponent";
 
 const Test = () => {
   return (
-    <CategorySelector />
+    <ModalComponent />
   )
 }
 
