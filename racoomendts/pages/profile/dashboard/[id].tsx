@@ -54,7 +54,13 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   console.log(session);
   console.log(id);
   //@ts-ignore
-  if (!session || (session && session.user.email !== id)) return ( <div className={styles.notAllowed}><h2>Not allowed to access this context</h2></div> )
+  if (!session || (session && session.user.email !== id)) {
+    return ( 
+      <div className={styles.notAllowed}>
+        <h2>{"Don't meddle into other people's issues little raccoon!"}</h2> 
+        <h3>Please Sign in to access your own content.</h3>
+      </div> )
+  }
   return (
     <div className={styles.dashboardContainer}>
       <Head>

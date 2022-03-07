@@ -50,11 +50,11 @@ const Nav = () => {
 
       {session ? 
         <div>
-          <button onClick={() => signOut()}>Sign Out</button>
+          <button className={styles.signInBtn} onClick={() => signOut()}>Sign Out</button>
         </div>
        : 
         <div>
-          <button onClick={() => router.push('/login')}>Sign In</button>
+          <button className={styles.signOutBtn} onClick={() => router.push('/login')}>Sign In</button>
         </div>
       }
     </header>

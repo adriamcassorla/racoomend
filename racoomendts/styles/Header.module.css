@@ -18,20 +18,63 @@
 }
 
 .profileImg {
+  cursor: pointer;
   border-radius: 100px;
+  margin: 5px;
+  transition: all ease-in-out 0.2s;
+}
+
+.profileImg:hover {
+  box-shadow: 0 0 4px 3px #dadada;
+}
+
+.profileImg:active {
+  transform: scale(0.95); 
 }
 
 .dashboardBtn {
   margin-left: 20px;
+  font-size: 1.2em;
   background: none;
   border: none;
+  transition: all ease-in-out 0.25s;
+}
+
+.dashboardBtn:hover {
+  text-decoration: underline;
+  color: #ffde00;
+  text-shadow: 0.2px 0.2px #dadada;
+}
+
+.dashboardBtn:active {
+  transform: scale(0.95);
 }
 
 .logoContainer {
   max-width: 40%;
   cursor: pointer;
+  transition: all ease-in-out 0.2s;
 }
 
+.logoContainer:active {
+  transform: scale(0.95);
+}
+
+.signInBtn {
+  margin-left: 20px;
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  transition: all ease-in-out 0.25s;
+}
+
+.signOutBtn {
+  margin-left: 20px;
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  transition: all ease-in-out 0.25s;
+}
 
 /* .addButton {
   background-color: #dadada;
