@@ -1,0 +1,13 @@
+.notAllowed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileImg {
+  border-radius: 100px;
+}
+
+.profileContainer {
+  display: flex;
+}

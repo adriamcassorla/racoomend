@@ -14,13 +14,13 @@ const Login = ({ }: AppProps) => {
   console.log(session);
   if (session) {
     console.log(session);
-    // router.push(`/profile/dashboard/${session.user?.email}`)
-    return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    )
+    router.push(`/profile/dashboard/${session.user?.email}`)
+    // return (
+    //   <>
+    //     Signed in as {session.user?.email} <br />
+    //     <button onClick={() => signOut()}>Sign out</button>
+    //   </>
+    // )
   }
 
   return (

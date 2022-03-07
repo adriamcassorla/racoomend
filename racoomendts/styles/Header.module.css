@@ -1,11 +1,39 @@
 .fullbar {
+  margin: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fullbarRoot {
   margin: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.addButton {
+.profileContainer {
+  display: flex;
+  align-items: center;
+}
+
+.profileImg {
+  border-radius: 100px;
+}
+
+.dashboardBtn {
+  margin-left: 20px;
+  background: none;
+  border: none;
+}
+
+.logoContainer {
+  max-width: 40%;
+  cursor: pointer;
+}
+
+
+/* .addButton {
   background-color: #dadada;
   padding: 8px;
   border: none;
@@ -23,9 +51,4 @@
 .addButton:active {
   transform: scale(0.97);
   opacity: 0.8;
-}
-
-.logoContainer {
-  max-width: 40%;
-  cursor: pointer;
-}
+} */

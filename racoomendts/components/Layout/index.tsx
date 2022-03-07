@@ -1,5 +1,5 @@
 import Nav from "./Nav";
-import styles from "./../styles/Home.module.css"
+import Footer from "./Footer"
 
 type LayoutProps = {
   children: any
@@ -10,6 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Nav />
       <main>{children}</main>
+      <Footer />
     </>
   )
 }
