@@ -2,13 +2,23 @@ import { Recommendation } from "../../types/Recommendation"
 import CurrentUserContext from '../../utils/context';
 import { useContext } from 'react';
 import styles from './../../styles/RecommendationComponent.module.css'
+import deleteRecommendation from './../../utils/APIfunctions/deleteRecommendation';
 
 type Props = {
   recommendation: Recommendation
+  setRecommendations: Function
 }
 
-const RecommendationComponent = ({recommendation}: Props) => {
+const RecommendationComponent = ({recommendation, setRecommendations}: Props) => {
 
+  const handleDelete = async () => {
+    const deletedRecommendation = await deleteRecommendation(recommendation.id);
+    // Force parent component to rerender after deletion.
+    setRecommendations((prev: Recommendation[]) => {
+      return prev.filter((el) => el != recommendation);
+    })
+    return deletedRecommendation;
+  }
   //@ts-ignore
   const {currentUser} = useContext(CurrentUserContext);
   console.log(currentUser, 'from recommendation component')
@@ -21,8 +31,8 @@ const RecommendationComponent = ({recommendation}: Props) => {
       </div>
       { currentUser.id === recommendation.authorId ?
         <div className={styles.deleteIcon}>
-        <p>❌</p>
-      </div> : null
+          <button onClick={handleDelete}>❌</button>
+        </div> : null
       }
     </div>
   )

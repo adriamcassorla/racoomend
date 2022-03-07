@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "../styles/Add.module.css"
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { useRouter } from "next/router";
+import addRecommendation from "../utils/APIfunctions/addRecommendation";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -15,26 +16,9 @@ const Add = () => {
   const [url, setUrl] = useState('');
   const [categories, setCategories] = useState('ARTICLE');
 
-  const addRecommendation = async (e: React.FormEvent ) => {
-    e.preventDefault()
-    try {
-      const rawRecommendation = await fetch('/api/recommendation/newRecommend', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          title, oneline, url, categories, 
-          authorId: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc',
-          groupId: '32c8c42d-8449-4cbd-b419-07ca48680da2', })
-      })
-      const recommendation = rawRecommendation.json();
-      console.log(recommendation);
-      return recommendation;
-
-    } catch (e) {
-      console.error(e);
-    }
+  const handleAdd = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const newRecommendation = await addRecommendation(e, title, oneline, url, categories)
   }
 
   return (
@@ -45,7 +29,7 @@ const Add = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image src="/raccoon.png" alt="Racoomend logo" width={200} height={143} />
-      <form onSubmit={addRecommendation} className={styles.addForm}>
+      <form onSubmit={handleAdd} className={styles.addForm}>
         <label htmlFor="title">Title</label>
         <input className={styles.formInput} id="title" name="title" type="text" placeholder="Title your recommendation" value={title} onChange={(e) => setTitle(e.target.value)} required/>
 

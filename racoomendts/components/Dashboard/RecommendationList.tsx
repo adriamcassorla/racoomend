@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from '../../styles/RecommendationList.module.css';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import { Recommendation } from '../../types/Recommendation';
@@ -14,6 +14,8 @@ type Props = {
 
 const RecommendationList = ({ recommendations, category, currentGroup, setRecommendationDialog }: Props) => {
   
+  const [currentRecommendations, setRecommendations] = useState(recommendations);
+  
   const noCategory = () => {
     return (
       <h3>Select a Category from the list above</h3>
@@ -25,8 +27,8 @@ const RecommendationList = ({ recommendations, category, currentGroup, setRecomm
       <ul>
         { 
         !category ? noCategory() :
-        !recommendations ? null :
-        recommendations.filter((recommendation: Recommendation) => {
+        !currentRecommendations ? null :
+        currentRecommendations.filter((recommendation: Recommendation) => {
           return recommendation.categories === category;
         })
         .filter((recommendation: Recommendation) => {
@@ -34,7 +36,7 @@ const RecommendationList = ({ recommendations, category, currentGroup, setRecomm
         })
         .map((recommendation: Recommendation) => {
           return (<li key={recommendation.id}>
-                <RecommendationComponent recommendation={recommendation}/>
+                <RecommendationComponent recommendation={recommendation} setRecommendations={setRecommendations}/>
               </li>)
         }) 
       }
