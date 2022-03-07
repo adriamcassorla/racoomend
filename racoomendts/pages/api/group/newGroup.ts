@@ -11,7 +11,6 @@ export default async function handler(
   const { name, userId, userEmail} = req.body
   if ( req.method === 'POST') {
     try {
-      console.log(req.body);
       const group = await prisma.group.create({
         data: {
           name,
@@ -20,7 +19,6 @@ export default async function handler(
           }
         },
       }) 
-     console.log(group);
       res.status(201).redirect(`/profile/dashboard/${userEmail}`)
   
     } catch (e) {

@@ -1,5 +1,5 @@
 .groupListContainer {
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -16,6 +16,6 @@
 
 .groupList {
   width: 100%;
-  background-color: #dadada;
+  background-color: #ededed;
   border-radius: 5px;
 }

@@ -23,7 +23,7 @@ const RecommendationList = ({ recommendations, category, currentGroup, setRecomm
   }
 
   return (
-    <div>
+    <div className={styles.listContainer}>
       <ul>
         { 
         !category ? noCategory() :
@@ -88,7 +88,6 @@ export default RecommendationList;
 //       //   return recommendation.groups?.includes(currentGroup)
 //       // })
 //       .map((recommendation: Recommendation) => {
-//           console.log(recommendation.categories);
 //           return (<li key={recommendation.id}>
 //               <h1>
 //               {recommendation.title}

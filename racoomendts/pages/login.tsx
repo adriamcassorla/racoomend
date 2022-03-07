@@ -11,9 +11,7 @@ const Login = ({ }: AppProps) => {
   
   const router = useRouter()
   const { data: session } = useSession()
-  console.log(session);
   if (session) {
-    console.log(session);
     router.push(`/profile/dashboard/${session.user?.email}`)
     // return (
     //   <>

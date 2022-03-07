@@ -14,7 +14,6 @@ const addRecommendation = async (e: React.FormEvent, title: string, oneline: str
         groupId: '32c8c42d-8449-4cbd-b419-07ca48680da2', })
     })
     const recommendation = rawRecommendation.json();
-    console.log(recommendation);
     return recommendation;
 
   } catch (e) {

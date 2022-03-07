@@ -21,13 +21,15 @@ const RecommendationComponent = ({recommendation, setRecommendations}: Props) =>
   }
   //@ts-ignore
   const {currentUser} = useContext(CurrentUserContext);
-  console.log(currentUser, 'from recommendation component')
 
   return (
     <div className={styles.recommendationContainer}>
       <div>
-        <h4>{recommendation.title}</h4>
-        <p>{recommendation.oneline}</p>
+        <h4 className={styles.title}>{recommendation.title}</h4>
+        <h6 className={styles.oneline}>{recommendation.oneline}</h6>
+      </div>
+      <div>
+        <p>{recommendation.url}</p>
       </div>
       { currentUser.id === recommendation.authorId ?
         <div className={styles.deleteIcon}>

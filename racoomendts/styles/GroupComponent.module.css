@@ -1,8 +1,38 @@
 .groupContainer {
   margin: 10px;
   border: 0.2px solid #ededed;
-  color: #1d1d1b;
+  color: #384047;
   cursor: pointer;
   text-align: center;
 }
 
+.selectedContainer {
+  margin: 10px;
+  border: 0.2px solid #ededed;
+  color: #384047;
+  
+  cursor: pointer;
+  text-align: center;
+}
+
+.groupName {
+  margin: 18px;
+}
+
+.inviteBtn {
+  background-color: #384047;
+  border-radius: 20px;
+  padding: 3px 15px;
+  color: #ffde00;
+}
+
+.link:hover {
+  text-shadow: 0.5px 0.5px 1px #1d1d1b;
+  color: #483b2b;
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

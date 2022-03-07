@@ -16,9 +16,8 @@ const AddGroup = ({ setDialog, showDialog }: Props) => {
   const router = useRouter();
   const [name, setName] = useState('');
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser.id);
-  console.log(showDialog);
   const addGroup = async (e: React.FormEvent ) => {
+    setDialog(false);
     e.preventDefault();
     try {
       const rawGroup = await fetch('/api/group/newGroup', {

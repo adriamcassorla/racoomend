@@ -1,18 +1,30 @@
 .list {
   list-style-type: none;
   display: flex;
+  justify-content: space-evenly;
   background-color: #384047;
   border-radius: 5px;
   padding: 15px;
+  width: 80%;
 }
 
 .category {
+  color: #ffde00;
+  font-size: 1.5em;
   font-weight: 600;
-  margin: 10px;
   padding: 10px;
-  background-color: #dadada;
+  background: none;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.category:hover {
+  transform: scale(1.1);
+}
+
+.category:active {
+  transform: scale(0.9);
 }
 

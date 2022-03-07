@@ -10,7 +10,6 @@ export default async function handler(
 ) {
   if ( req.method === 'DELETE') {
     try {
-      console.log(req.body);
       const { id } = req.body
       const recommendation = await prisma.recommendation.delete({
         where: {

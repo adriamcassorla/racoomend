@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { MouseEventHandler, useState } from "react"
 import { Group } from "../../types/Group"
 import styles from "./../../styles/GroupComponent.module.css"
 
@@ -11,7 +11,7 @@ type Props = {
 const GroupComponent = ({setGroup, group, currentGroup}: Props) => {
 
   const [showLink, setShowLink] = useState(false);
-
+  console.log(currentGroup)
   const handleClick = () => {
     setGroup(group.id);
   }
@@ -20,17 +20,29 @@ const GroupComponent = ({setGroup, group, currentGroup}: Props) => {
     setShowLink(showing => !showing)
   }
 
+  const copyToClipBoard = () => {
+    navigator.clipboard.writeText(`http://localhost:3000/api/group/${group.id}`)
+  }
+
+  const linkClass = (currentGroup !== group.id ? styles.groupContainer : styles.selectedContainer)
+
   return (
-    <div onClick={handleClick} className={styles.groupContainer}>
-      <h3>{group.name}</h3>
+    <div onClick={handleClick} className={linkClass}>
+      <h3 className={styles.groupName}>{group.name}</h3>
       {
         showLink ? (
-          <div>
-            <p>Share this link to join!</p>
-            <p>{`http:localhost:3000/api/group/${group.id}`}</p> <button onClick={toggle}>❌</button>
+            <div className={styles.linkContainer}>
+        
+            <div>
+              <p>Share this link!</p>
+              <button className={styles.link} onClick={copyToClipBoard}>Click here to copy the link</button> 
+            </div>
+            <div>
+              <button onClick={toggle}>❌</button>
+            </div>
           </div>
         ) :
-        <button onClick={toggle}>Invite</button>
+        <button className={styles.inviteBtn} onClick={toggle}>Invite</button>
       }
     </div>
   )

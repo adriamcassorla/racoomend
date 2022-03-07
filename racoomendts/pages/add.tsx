@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "../styles/Add.module.css"
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { useRouter } from "next/router";
@@ -6,11 +6,13 @@ import addRecommendation from "../utils/APIfunctions/addRecommendation";
 
 import Head from "next/head";
 import Image from "next/image";
+import CurrentUserContext from "../utils/context";
 
 
 const Add = () => {
 
   const router = useRouter();
+  const [user] = useContext(CurrentUserContext);
   const [title, setTitle] = useState('');
   const [oneline, setOneline] = useState('');
   const [url, setUrl] = useState('');

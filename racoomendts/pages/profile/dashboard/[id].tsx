@@ -43,11 +43,12 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   //@ts-ignore
   const { currentUser, setUser } = useContext(CurrentUserContext);
   const [category, setCategory] = useState('');
-  const [currentGroup, setGroup] = useState('96ecde36-0462-4e11-8841-3bb2d882f7b1');
+  const [currentGroup, setGroup] = useState('');
   const [showGroupDialog, setGroupDialog] = useState(false);
   const [showReccomendationDialog, setRecommendationDialog] = useState(false);
 
   useEffect(() => {
+    setGroup(groups[0].id)
     setUser(user);
     
   }, [])

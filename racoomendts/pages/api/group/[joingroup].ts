@@ -15,10 +15,7 @@ export default async function handler(
 ) {
 
   const session = await getSession({ req })
-  // console.log(session);
-  // console.log(req.query);
   const { joingroup } = req.query 
-  // console.log(joingroup);
   if (session && session.user?.email) {
     const email = session.user?.email
     if ( req.method === 'GET' && typeof joingroup === 'string') {

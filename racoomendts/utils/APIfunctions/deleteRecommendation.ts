@@ -8,7 +8,6 @@ const deleteRecommendation = async ( id: string ) => {
       body: JSON.stringify({ id })
     })
     const recommendation = rawRecommendation.json();
-    console.log(recommendation);
     return recommendation;
 
   } catch (e) {

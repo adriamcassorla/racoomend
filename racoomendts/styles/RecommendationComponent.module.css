@@ -1,9 +1,24 @@
 .recommendationContainer {
   display: flex;
+  margin-top: 10px;
   align-items: center;
+  justify-content: space-around;
+  background-color: #dadada;
+  border-radius: 5px;
+  
 }
 
 .deleteIcon {
   cursor: pointer;
   justify-self: flex-start;
+}
+
+.title {
+  font-size: 1.2em;
+}
+
+.oneline {
+  margin: 15px;
+  margin-left: 30px;
+  font-size: 1em;
 }

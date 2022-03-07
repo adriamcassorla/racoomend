@@ -11,7 +11,6 @@ export default async function handler(
 ) {
   if ( req.method === 'POST') {
     try {
-      console.log(req.body);
       const { title, oneline, url, authorId, groupId, categories} = req.body
       const recommendation = await prisma.recommendation.create({
         data: {

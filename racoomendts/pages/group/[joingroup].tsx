@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { join } from 'path';
 
 const APIJoinGroup = async ( joingroup: string ) => {
-  console.log(joingroup);
   const rawUser = await fetch(`http://localhost:3000/api/group/${joingroup}`)
   return await rawUser.json();
 }
@@ -21,9 +20,7 @@ const APIJoinGroup = async ( joingroup: string ) => {
 
 const JoinGroup = () => {
   const router = useRouter();
-  console.log(router.query);
   const { joingroup } = router.query;
-  console.log('joingroup = ', joingroup)
   const [user, setUser] = useState();
 
   useEffect(() => {
