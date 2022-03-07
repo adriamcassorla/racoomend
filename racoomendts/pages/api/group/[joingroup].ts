@@ -15,18 +15,17 @@ export default async function handler(
 ) {
 
   const session = await getSession({ req })
-  console.log(session);
-  const email = 'nicolopez413@gmail.com'
+  // console.log(session);
+  // console.log(req.query);
   const { joingroup } = req.query 
-  console.log(req.method);
-  console.log(typeof joingroup);
-  if (session) {
+  // console.log(joingroup);
+  if (session && session.user?.email) {
+    const email = session.user?.email
     if ( req.method === 'GET' && typeof joingroup === 'string') {
-      console.log('from within')
       try {
 
         const user = await prisma.user.update({
-          where: { email },
+          where: { email: email },
           data: {
             groups: {
               connect: { id: joingroup}
@@ -36,8 +35,8 @@ export default async function handler(
           })
         
         
-        if ( user ) res.status(200).json({ user })
-        
+        if ( user ) res.redirect(`/profile/dashboard/${email}`)
+
       } catch (Error) {
         console.error(Error, "Error while updating group");
         res.json({Error: 'Data Provided is not correct, provide a category group ID'});
@@ -46,5 +45,5 @@ export default async function handler(
     else res.status(403).json({ Error: 'Method not accepted'})
      
   }
-  else res.status(403).json({ Error: 'You must be sign in to view this content'})
+  else res.status(403).redirect('/login')
 }

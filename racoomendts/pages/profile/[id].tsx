@@ -44,11 +44,6 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   useEffect(() => {
     setUser(user);
   }, [])
-  console.log(currentUser);
-  console.log(session);
-  console.log(id);
-  console.log('groups', groups)
-  console.log('recommendations', recommendations);
   //@ts-ignore
   if (!session || (session && session.user.email !== id)) {
     return ( 

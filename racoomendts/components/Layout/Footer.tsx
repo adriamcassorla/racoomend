@@ -6,7 +6,7 @@ const Footer = () => {
  
   return (
     <footer className={styles.footerContainer}>
-      Made with 🍕🧀🌯 in Barcelona to atract some 🦝
+      Made with 🍕🧀🌯 in Barcelona to attract some 🦝
     </footer>
   )
 };

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import styles from './../../../styles/CreateGroup.module.css'
 
 type Props = {
   setGroupDialog: Function;
@@ -12,8 +12,8 @@ const CreateGroup = ( {setGroupDialog}: Props ) => {
   }
 
   return (
-    <div>
-      <button onClick={handleClick}>Create a new Group</button>
+    <div >
+      <button className={styles.newGroupBtn} onClick={handleClick}><h3>Add a new Group</h3></button>
     </div>
   )
 }

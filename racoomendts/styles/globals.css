@@ -32,7 +32,11 @@ ul {
 
 button {
   transition: all ease-out 0.1s;
+  background: none;
+  border: none;
+  font-size: 1em;
 }
+
 
 button:active {
   transform: scale(0.95);
