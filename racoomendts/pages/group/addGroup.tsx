@@ -1,31 +1,39 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "../../styles/Add.module.css"
 import { useRouter } from "next/router";
+import CurrentUserContext from "../../utils/context";
 
 import Head from "next/head";
 import Image from "next/image";
 
+type Props = {
+  showDialog: boolean,
+  setDialog: Function;
+}
 
-const AddGroup = () => {
+const AddGroup = ({ setDialog, showDialog }: Props) => {
 
   const router = useRouter();
   const [name, setName] = useState('');
-
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log(currentUser.id);
+  console.log(showDialog);
   const addGroup = async (e: React.FormEvent ) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const rawGroup = await fetch('/api/recommendation/newRecommend', {
+      const rawGroup = await fetch('/api/group/newGroup', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
         },
         body: JSON.stringify({
           name, 
-          userId: '5d1a59e8-9113-4df6-bbfe-efaeb3baf4cc',
+          userId: currentUser.id,
+          userEmail: currentUser.email,
         })
       })
-      const group = rawGroup.json();
-      console.log(group);
+      const group = await rawGroup.json();
+      
       return group;
 
     } catch (e) {
@@ -37,7 +45,7 @@ const AddGroup = () => {
     <div className={styles.container}>
       <Head>
         <title>Add</title>
-        <meta name="Add a new Group" content="Create a new group of frineds" />
+        <meta name="Add a new Group" content="Create a new group of friends" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image src="/raccoon.png" alt="Racoomend logo" width={200} height={143} />

@@ -20,7 +20,7 @@ const ModalComponent = ( {category, showDialog, setDialog}: Props ) => {
     return (
       <div>
         <Dialog isOpen={showDialog} onDismiss={close} aria-label="New Group" style={{width: 'fit-content',height: '0', background: 'transparent'}}>
-          <AddGroup />
+          <AddGroup showDialog={showDialog} setDialog={setDialog}/>
         </Dialog>
       </div>
     );

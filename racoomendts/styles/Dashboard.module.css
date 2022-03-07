@@ -4,9 +4,11 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  overflow-y: scroll;
 }
 
 .leftContainer {
+  overflow-y: scroll;
   margin-left: 50px;
   flex: 1;
 }

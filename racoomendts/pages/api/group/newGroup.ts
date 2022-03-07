@@ -8,10 +8,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const { name, userId, userEmail} = req.body
   if ( req.method === 'POST') {
     try {
       console.log(req.body);
-      const { name, userId } = req.body
       const group = await prisma.group.create({
         data: {
           name,
@@ -20,13 +20,13 @@ export default async function handler(
           }
         },
       }) 
-     
-      res.status(200).json({ group })
+     console.log(group);
+      res.status(201).redirect(`/profile/dashboard/${userEmail}`)
   
     } catch (e) {
       console.error(e);
-      res.json({e});
+      res.status(403).redirect(`/profile/dashboard/${userEmail}`)
     }
   }
-  else res.status(403).json({ Error: 'Method not accepted'})
+  else res.status(403).redirect(`/profile/dashboard/${userEmail}`)
 }

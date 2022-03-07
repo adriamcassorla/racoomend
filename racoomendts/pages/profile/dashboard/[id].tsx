@@ -51,8 +51,6 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
     setUser(user);
     
   }, [])
-  console.log(session);
-  console.log(id);
   //@ts-ignore
   if (!session || (session && session.user.email !== id)) {
     return ( 
