@@ -20,7 +20,7 @@ const RecommendationComponent = ({ recommendation }: Props) => {
     })
     return deletedRecommendation;
   }
-  
+  if (!currentUser) return <></>
   return (
     <div className={styles.recommendationContainer}>
       <div>
