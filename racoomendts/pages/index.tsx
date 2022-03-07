@@ -22,14 +22,21 @@ const Home = ({ users }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h3>Exhausted of spending more time choosing a netflix movie than watching it?</h3>
-        <h3>Wanted to try a new delivery restaurant but get losted in the endless options?  </h3>
-        <h2>Trust your friends, they know you better.</h2>
-        <Link href='/login' passHref> 
-          <div>
-            <button>Start Racoomending</button>
-          </div>
+        <div className={styles.heroContainer}>
+          <h3 className={styles.subTitle}>Spending more time choosing a netflix movie than watching it?</h3>
+          <h2 className={styles.mainTitle}>Trust your friends, they know you better.</h2>
+          <Link href='/login' passHref> 
+            <div>
+              <button className={styles.CTA}>Start Racoomending</button>
+            </div>
         </Link>
+        </div>
+        <div className={styles.racImg}>
+          <Image  src='/Landing_Raccoon.png' width={500} height={400} alt='Celebrating raccoon'/>
+        </div>
+        <div className={styles.racImgLeft}>
+          <Image  src='/Landing_Raccoon.png' width={500} height={400} alt='Celebrating raccoon'/>
+        </div>
 
       </div>
     </div>
