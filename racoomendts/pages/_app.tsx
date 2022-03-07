@@ -9,10 +9,10 @@ import { Context } from '../types/Context';
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
   const [currentUser, setUser] = useState({});
-
+  const [currentRecommendations, setRecommendations] = useState([])
   return (
     //@ts-ignore
-    <CurrentUserContext.Provider value={{currentUser, setUser}}>
+    <CurrentUserContext.Provider value={{currentUser, setUser, currentRecommendations, setRecommendations}}>
     <SessionProvider session={session}>
       <Layout>
         <Component {...pageProps} />

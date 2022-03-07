@@ -7,12 +7,17 @@ import addRecommendation from "../utils/APIfunctions/addRecommendation";
 import Head from "next/head";
 import Image from "next/image";
 import CurrentUserContext from "../utils/context";
+import { Recommendation } from "../types/Recommendation";
 
+type Props = {
+  currentGroup: string,
+  setDialog: Function
+}
 
-const Add = () => {
+const Add = ( { currentGroup, setDialog }: Props ) => {
 
   const router = useRouter();
-  const [user] = useContext(CurrentUserContext);
+  const {currentUser, setRecommendations} = useContext(CurrentUserContext);
   const [title, setTitle] = useState('');
   const [oneline, setOneline] = useState('');
   const [url, setUrl] = useState('');
@@ -20,8 +25,13 @@ const Add = () => {
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newRecommendation = await addRecommendation(e, title, oneline, url, categories)
-  }
+    if (currentUser){
+      setDialog(false);
+      const newRecommendation = await addRecommendation( title, oneline, url, categories, currentUser.id, currentGroup )
+      setRecommendations((prev: Recommendation[]) => [...prev, newRecommendation]);
+      }
+    }
+  
 
   return (
     <div className={styles.container}>
@@ -42,7 +52,7 @@ const Add = () => {
         <input className={styles.formInput} id='url' name='url' type="text" placeholder="Provide a url with more relevant info" value={url} onChange={(e) => setUrl(e.target.value)}/>
         
         <label htmlFor="categories">Choose a category</label>
-        <select id="categories"name="gender" value={categories} onChange={(e) => setCategories(e.target.value)} required>
+        <select className={styles.selectMenu} id="categories"name="gender" value={categories} onChange={(e) => setCategories(e.target.value)} required>
           <option value="ARTICLE">Article</option>
           <option value="MOVIE">Movie</option>
           <option value="BOOK">Book</option>

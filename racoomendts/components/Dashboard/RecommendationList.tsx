@@ -4,6 +4,7 @@ import { AppProps } from 'next/dist/shared/lib/router/router';
 import { Recommendation } from '../../types/Recommendation';
 import RecommendationComponent from './RecommendationComponent';
 import CreateReccomendation from './Buttons/Create Recommendation';
+import CurrentUserContext from '../../utils/context';
 
 type Props = {
   recommendations: Recommendation[],
@@ -12,23 +13,22 @@ type Props = {
   setRecommendationDialog: Function,
 }
 
-const RecommendationList = ({ recommendations, category, currentGroup, setRecommendationDialog }: Props) => {
-  
-  const [currentRecommendations, setRecommendations] = useState(recommendations);
-  
+const RecommendationList = ({ category, currentGroup, setRecommendationDialog, recommendations }: Props) => {
+
+
   const noCategory = () => {
     return (
       <h3>Select a Category from the list above</h3>
     )
   }
-
+  console.log(recommendations, 'from list');
   return (
     <div className={styles.listContainer}>
       <ul>
         { 
         !category ? noCategory() :
-        !currentRecommendations ? null :
-        currentRecommendations.filter((recommendation: Recommendation) => {
+        !recommendations ? null :
+        recommendations.filter((recommendation: Recommendation) => {
           return recommendation.categories === category;
         })
         .filter((recommendation: Recommendation) => {
@@ -36,7 +36,7 @@ const RecommendationList = ({ recommendations, category, currentGroup, setRecomm
         })
         .map((recommendation: Recommendation) => {
           return (<li key={recommendation.id}>
-                <RecommendationComponent recommendation={recommendation} setRecommendations={setRecommendations}/>
+                <RecommendationComponent recommendation={recommendation} />
               </li>)
         }) 
       }

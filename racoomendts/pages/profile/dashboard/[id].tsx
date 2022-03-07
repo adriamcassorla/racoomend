@@ -41,17 +41,20 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   // Checking if there is a session to act accordingly
   const { data: session } = useSession();
   //@ts-ignore
-  const { currentUser, setUser } = useContext(CurrentUserContext);
+  const { currentUser, setUser, currentRecommendations, setRecommendations } = useContext(CurrentUserContext);
   const [category, setCategory] = useState('');
   const [currentGroup, setGroup] = useState('');
   const [showGroupDialog, setGroupDialog] = useState(false);
   const [showReccomendationDialog, setRecommendationDialog] = useState(false);
 
   useEffect(() => {
-    setGroup(groups[0].id)
+    //@ts-ignore
     setUser(user);
-    
+    //@ts-ignore
+    setRecommendations(recommendations);
   }, [])
+  console.log('From Dashboard', currentRecommendations);
+  console.log('From Dashboard', currentUser);
   //@ts-ignore
   if (!session || (session && session.user.email !== id)) {
     return ( 
@@ -72,11 +75,11 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
       </div>
       <div className={styles.rightContainer}>
         <CategorySelector setCategory={setCategory} category={category}/>
-        <RecommendationList setRecommendationDialog={setRecommendationDialog} recommendations={recommendations} category={category} currentGroup={currentGroup} />
+        <RecommendationList setRecommendationDialog={setRecommendationDialog} category={category} currentGroup={currentGroup} recommendations={currentRecommendations}/>
       </div>
 
       <ModalComponent category="Group" showDialog={showGroupDialog} setDialog={setGroupDialog}/>
-      <ModalComponent category="Recommendation" showDialog={showReccomendationDialog} setDialog={setRecommendationDialog}/>
+      <ModalComponent category="Recommendation" showDialog={showReccomendationDialog} setDialog={setRecommendationDialog} currentGroup={currentGroup} />
 
     </div>
   )

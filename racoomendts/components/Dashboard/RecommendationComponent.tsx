@@ -6,22 +6,21 @@ import deleteRecommendation from './../../utils/APIfunctions/deleteRecommendatio
 
 type Props = {
   recommendation: Recommendation
-  setRecommendations: Function
 }
 
-const RecommendationComponent = ({recommendation, setRecommendations}: Props) => {
+const RecommendationComponent = ({ recommendation }: Props) => {
 
+  const { currentUser, setRecommendations } = useContext(CurrentUserContext);
   const handleDelete = async () => {
     const deletedRecommendation = await deleteRecommendation(recommendation.id);
     // Force parent component to rerender after deletion.
+    //@ts-ignore
     setRecommendations((prev: Recommendation[]) => {
       return prev.filter((el) => el != recommendation);
     })
     return deletedRecommendation;
   }
-  //@ts-ignore
-  const {currentUser} = useContext(CurrentUserContext);
-
+  
   return (
     <div className={styles.recommendationContainer}>
       <div>

@@ -1,7 +1,10 @@
 import { SetStateAction } from 'react';
+import { Recommendation } from './Recommendation';
 import { User } from './User';
 
 export interface Context {
   currentUser?: User,
-  setUser: SetStateAction<User>,
+  recommendations?: Recommendation[],
+  setRecommendations: Function, // Why does this cause trouble? SetStateAction<Recommendation[]>, 
+  setUser: Function,
 }

@@ -1,7 +1,7 @@
 .container {
   margin: 80px auto;
-  width: 300px;
-  height: 400px;
+  width: 350px;
+  height: 480px;
   background-color: #ffde00;
   display: flex;
   flex-direction: column;
@@ -19,22 +19,33 @@
 
 .formInput {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  padding-left: 7px;
   width: 80%;
   height: 1.6rem;
+  border: 0.5px solid;
+  border-radius: 5px;
+}
+
+.selectMenu {
+  margin: 15px 0;
+  border-radius: 5px;
 }
 
 .addButton {
-  background-color: #dadada;
+  color: white;
+  background-color: #1d1d1b;
   border: 0.2px solid;
   padding: 8px;
   border-radius: 8px;
   transition:all ease-in-out 0.2;
+  margin-bottom: 10px;
 }
 
 .addButton:hover {
   transform: scale(1.02);
-  background-color: #ededed;
+  color:#ffde00;
+  background-color: #384047;
 }
 
 .addButton:active {
