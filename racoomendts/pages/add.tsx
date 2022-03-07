@@ -32,7 +32,6 @@ const Add = ( { currentGroup, setDialog }: Props ) => {
       }
     }
   
-
   return (
     <div className={styles.container}>
       <Head>

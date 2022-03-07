@@ -73,7 +73,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
         </div>
         <div className={styles.contentContainer}>
           <div className={styles.groupsContainer}>          
-            <p>You are currently in {groups.length} groups</p>
+            <h3>You are currently in {groups.length} groups</h3>
             <ul>
               {groups.map(group => {
                 return (
@@ -85,9 +85,9 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
             </ul>
           </div>
           <div className={styles.recommendationsContainer}>
-            <p>For a total of {recommendations.length} recommendations</p>
-            <ul>
-              These are the recommendations you have created.
+            <h3>Have a total of {recommendations.length} recommendations</h3>
+            <ul className={styles.recList}>
+              <h4>These are the ones given by you.</h4>
               {recommendations.filter(recommendation => {
                 return recommendation.authorId === user.id
               }).map(recommendation => {

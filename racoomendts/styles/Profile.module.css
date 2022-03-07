@@ -1,3 +1,21 @@
+.profileContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+}
+
+.contentContainer {
+  justify-self: flex-start;
+  font-weight: 500;
+}
+
 .notAllowed {
   display: flex;
   justify-content: center;

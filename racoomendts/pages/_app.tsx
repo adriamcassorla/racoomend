@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import Layout from '../components/Layout/index'
 import { SessionProvider } from 'next-auth/react';
 import CurrentUserContext from '../utils/context';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Context } from '../types/Context';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
