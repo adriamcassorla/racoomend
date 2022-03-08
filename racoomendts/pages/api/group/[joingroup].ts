@@ -15,17 +15,18 @@ export default async function handler(
 ) {
   try {
 
-    const session = await getSession({ req })
+    // const session = await getSession({ req })
     const { joingroup } = req.query 
-    if (session && session.user?.email) {
-    const email = session.user?.email
-    if ( req.method === 'GET' && typeof joingroup === 'string') {
+    // if (session && session.user?.email) {
+    // const email = session.user?.email
+    // if ( req.method === 'GET' && typeof joingroup === 'string') {
       try {
         
         const user = await prisma.user.update({
-          where: { email: email },
+          where: { email: 'racoomend@gmail.com' },
           data: {
             groups: {
+              //@ts-ignore
               connect: { id: joingroup}
             }
           }
@@ -33,18 +34,20 @@ export default async function handler(
         })
         
         
-        if ( user ) res.redirect(`/profile/dashboard/${email}`)
+        if ( user ) res.redirect(`/profile/dashboard/racoomend@gmail.com`)
         
       } catch (Error) {
         console.error(Error, "Error while updating group");
         res.json({Error: 'Data Provided is not correct, provide a category group ID'});
       }
+    } catch (e) {
+      res.json({Error: 'Not working'})
     }
-    else res.status(403).json({ Error: ''})
+    // else res.status(403).json({ Error: ''})
     
-  }
-  else res.status(401).json({ Error: `Not founding session ${session?.user?.email}`})
-  } catch (e) {
-    res.status(401).json({ Error: 'Not going inside '})
-  }
+  // }
+  // else res.status(401).json({ Error: `Not founding session ${session?.user?.email}`})
+  // } catch (e) {
+    // res.status(401).json({ Error: 'Not going inside '})
+  // }
 }
