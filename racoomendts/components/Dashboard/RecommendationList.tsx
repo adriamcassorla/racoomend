@@ -1,18 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from '../../styles/RecommendationList.module.css';
-import { AppProps } from 'next/dist/shared/lib/router/router';
 import { Recommendation } from '../../types/Recommendation';
 import RecommendationComponent from './RecommendationComponent';
-import CreateReccomendation from './Buttons/Create Recommendation';
 import CurrentUserContext from '../../utils/context';
 
 type Props = {
   category: string,
   currentGroup: string,
-  setRecommendationDialog: Function,
 }
 
-const RecommendationList = ({ category, currentGroup, setRecommendationDialog }: Props) => {
+const RecommendationList = ({ category, currentGroup }: Props) => {
 
   const { currentRecommendations } = useContext(CurrentUserContext);
   const [ showingRec, setShowingRec ] = useState(currentRecommendations);
@@ -46,7 +43,7 @@ const RecommendationList = ({ category, currentGroup, setRecommendationDialog }:
         }) 
       }
       </ul>
-      <CreateReccomendation setRecommendationDialog={setRecommendationDialog}/>
+      
     </div>
   )
 };

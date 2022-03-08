@@ -18,4 +18,6 @@
   width: 100%;
   background-color: #ededed;
   border-radius: 5px;
+  max-height: 42vh;
+  overflow-y: scroll;
 }

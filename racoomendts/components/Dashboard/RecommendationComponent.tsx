@@ -3,6 +3,7 @@ import CurrentUserContext from '../../utils/context';
 import { useContext } from 'react';
 import styles from './../../styles/RecommendationComponent.module.css'
 import deleteRecommendation from './../../utils/APIfunctions/deleteRecommendation';
+import Link from "next/link";
 
 type Props = {
   recommendation: Recommendation
@@ -28,7 +29,7 @@ const RecommendationComponent = ({ recommendation }: Props) => {
         <h6 className={styles.oneline}>{recommendation.oneline}</h6>
       </div>
       <div>
-        <p>{recommendation.url}</p>
+        <a href={recommendation.url}>Click for more Info!</a>
       </div>
       { currentUser.id === recommendation.authorId ?
         <div className={styles.deleteIcon}>

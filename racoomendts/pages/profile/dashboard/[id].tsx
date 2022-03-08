@@ -14,9 +14,10 @@ import Head from 'next/head'
 import CategorySelector from '../../../components/Dashboard/CategorySelector'
 import GroupList from '../../../components/Dashboard/GroupList'
 import RecommendationList from '../../../components/Dashboard/RecommendationList'
+import CreateRecommendation from '../../../components/Dashboard/Buttons/Create Recommendation'
 import styles from '../../../styles/Dashboard.module.css';
 import ModalComponent from '../../../components/ModalComponent'
-
+import CreateGroup from '../../../components/Dashboard/Buttons/CreateGroup'
 // typing API response and Props
 type DashboardProps = {
   user: User,
@@ -71,23 +72,40 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   }
 
   return (
-    <div className={styles.dashboardContainer}>
-      <Head>
-        <title>Dashboard</title>
-        <meta name="Dashboard" content="Interact with recommendations" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={styles.leftContainer}>
-        <GroupList setGroupDialog={setGroupDialog} groups={groups} currentGroup={currentGroup} setGroup={setGroup}/>
-      </div>
-      <div className={styles.rightContainer}>
-        <CategorySelector setCategory={setCategory} category={category}/>
-        <RecommendationList setRecommendationDialog={setRecommendationDialog} category={category} currentGroup={currentGroup} />
-      </div>
+    <div>
 
-      <ModalComponent category="Group" showDialog={showGroupDialog} setDialog={setGroupDialog}/>
-      <ModalComponent category="Recommendation" showDialog={showReccomendationDialog} setDialog={setRecommendationDialog} currentGroup={currentGroup} />
+      <div>
+        <Head>
+          <title>Dashboard</title>
+          <meta name="Dashboard" content="Interact with recommendations" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
+      </div>
+        <div className={styles.dashboardContainer}>
+        <div className={styles.leftContainer}>
+          <div className={styles.groupsContainer}>
+            <GroupList groups={groups} currentGroup={currentGroup} setGroup={setGroup}/>
+          </div>
+          <div className={styles.groupButton}>
+            <CreateGroup setGroupDialog={setGroupDialog} />
+          </div>
+        </div>
+        <div className={styles.rightContainer}>
+          <div className={styles.categoryContainer}>
+            <CategorySelector setCategory={setCategory} category={category}/>
+          </div>
+          <div className={styles.recommendationsContainer}>
+            <RecommendationList category={category} currentGroup={currentGroup} />
+          </div>
+          <div className={styles.createRecContainer}>
+            <CreateRecommendation setRecommendationDialog={setRecommendationDialog}/>
+          </div>
+        </div>
+
+        <ModalComponent category="Group" showDialog={showGroupDialog} setDialog={setGroupDialog}/>
+        <ModalComponent category="Recommendation" showDialog={showReccomendationDialog} setDialog={setRecommendationDialog} currentGroup={currentGroup} />
+      </div>
     </div>
   )
 }

@@ -1,28 +1,44 @@
 .dashboardContainer {
   height: 75vh;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 0 auto;
-  overflow-y: scroll;
+  justify-content: flex-end;
 }
 
 .leftContainer {
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
   max-height: 60vh;
   margin-top: 10px;
   margin-left: 50px;
-  flex: 1;
+  margin-right: 100px;
+  width: 40%;
+}
+
+.groupButton {
+  margin: 0 auto;
 }
 
 .rightContainer {
-  flex: 3;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 60vh;
+  margin-left: 50px;
+  width: 100%;
+}
+
+.categoryContainer {
+  width: 100%;
+  min-height: 80px;
+}
+
+.recommendationsContainer {
+  width: 100%;
+  margin-left: 15px;
   overflow-y: scroll;
+  max-height: 47vh;
+}
+
+.createRecContainer {
+  width: 100%;
+  min-height: 80px;
+  margin-left: -80px;
 }
 
 .notAllowed {

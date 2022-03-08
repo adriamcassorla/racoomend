@@ -9,10 +9,14 @@
 .selectedContainer {
   margin: 10px;
   border: 0.2px solid #ededed;
-  color: #384047;
-  
+  color: #ffde00;
   cursor: pointer;
   text-align: center;
+  border: #1d1d1b 1px solid;
+  padding: 10px;
+  padding-top: 0;
+  border-radius: 20px;
+  background-color: #1d1d1b;
 }
 
 .groupName {

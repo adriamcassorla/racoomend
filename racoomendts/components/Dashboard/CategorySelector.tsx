@@ -13,6 +13,7 @@ const CategorySelector = ({ setCategory, category }: Props) => {
     setCategory(e.currentTarget.value);
   }
 
+  
   return (
     <ul className={styles.list}>
       <li ><button className={styles.category} value="MOVIE" onClick={onClick}>Movies</button></li>
