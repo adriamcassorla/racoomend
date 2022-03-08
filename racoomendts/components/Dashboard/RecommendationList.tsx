@@ -20,7 +20,10 @@ const RecommendationList = ({ category, currentGroup }: Props) => {
 
   const noCategory = () => {
     return (
-      <h3>Select a Category from the list above</h3>
+      <div>
+        <h3 className={styles.noSelected}>Select a Group from the side and a Category from the list above to browse or add new.</h3>
+        <hr></hr>
+      </div>
     )
   }
   console.log(currentRecommendations, 'from list');

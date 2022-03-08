@@ -2,3 +2,11 @@
   width: 75%;
   text-align: center;
 }
+
+.noSelected {
+  color: #ffdd1d;
+  margin: 80px auto;
+  background-color: #1d1d1b;
+  padding: 10px;
+  border-radius: 8px;
+}

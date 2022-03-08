@@ -68,12 +68,24 @@
   transition: all ease-in-out 0.25s;
 }
 
+.signInBtn:hover {
+  text-decoration: underline;
+  color: #ffde00;
+  text-shadow: 0.2px 0.2px #dadada; 
+}
+
 .signOutBtn {
   margin-left: 20px;
   font-size: 1.2em;
   background: none;
   border: none;
   transition: all ease-in-out 0.25s;
+}
+
+.signOutBtn:hover {
+  text-decoration: underline;
+  color: #ffde00;
+  text-shadow: 0.2px 0.2px #dadada;
 }
 
 /* .addButton {
