@@ -13,14 +13,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  try {
 
-  const session = await getSession({ req })
-  const { joingroup } = req.query 
-  if (session && session.user?.email) {
+    const session = await getSession({ req })
+    const { joingroup } = req.query 
+    if (session && session.user?.email) {
     const email = session.user?.email
     if ( req.method === 'GET' && typeof joingroup === 'string') {
       try {
-
+        
         const user = await prisma.user.update({
           where: { email: email },
           data: {
@@ -28,19 +29,22 @@ export default async function handler(
               connect: { id: joingroup}
             }
           }
-
-          })
+          
+        })
         
         
         if ( user ) res.redirect(`/profile/dashboard/${email}`)
-
+        
       } catch (Error) {
         console.error(Error, "Error while updating group");
         res.json({Error: 'Data Provided is not correct, provide a category group ID'});
       }
     }
-    else res.status(403).json({ Error: 'Method not accepted'})
-     
+    else res.status(403).json({ Error: ''})
+    
   }
   else res.status(403).redirect('/login')
+  } catch (e) {
+    res.status(401).json({ Error: 'Not going inside '})
+  }
 }
