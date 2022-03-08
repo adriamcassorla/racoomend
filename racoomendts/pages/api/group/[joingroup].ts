@@ -43,7 +43,7 @@ export default async function handler(
     else res.status(403).json({ Error: ''})
     
   }
-  else res.status(403).redirect('/login')
+  else res.status(401).json({ Error: `Not founding session ${session?.user?.email}`})
   } catch (e) {
     res.status(401).json({ Error: 'Not going inside '})
   }
