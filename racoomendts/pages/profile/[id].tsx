@@ -12,16 +12,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import styles from '../../styles/Profile.module.css';
 import Image from 'next/image'
-import { group } from 'console'
 
-// Getting the required Props from DB.
-export const getServerSideProps: GetServerSideProps = async ( {params} ) => {
-
-  const email = params?.id;
-  const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
-  const data = await res.json()
-  const { user, recommendations, groups} = data
-  return { props: { user, recommendations, groups }}
+type JSONResponse = {
+  data: DashboardProps,
 }
 
 type DashboardProps = {
@@ -29,6 +22,18 @@ type DashboardProps = {
   recommendations: Recommendation[],
   groups: Group[],
 }
+
+
+// Getting the required Props from DB.
+export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {params} ) => {
+
+  const email = params?.id;
+  const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
+  const { data } : JSONResponse = await res.json()
+  const { user, recommendations, groups} = data
+  return { props: { user, recommendations, groups }}
+}
+
 
 const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
 
@@ -42,7 +47,9 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   // @ts-ignore
   const { currentUser, setUser } = useContext(CurrentUserContext);
   useEffect(() => {
-    setUser(user);
+    if (setUser) {
+      setUser(user);
+    }
   }, [])
   //@ts-ignore
   if (!session || (session && session.user.email !== id)) {

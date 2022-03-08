@@ -4,7 +4,6 @@ import "@reach/dialog/styles.css";
 import styles from './../styles/ModalComponent.module.css'
 import Add from "../pages/add";
 import AddGroup from "../pages/group/addGroup";
-import { color } from "@chakra-ui/react";
 import { Recommendation } from './../types/Recommendation'
 
 type Props = {

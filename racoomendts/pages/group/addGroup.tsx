@@ -27,8 +27,8 @@ const AddGroup = ({ setDialog, showDialog }: Props) => {
         },
         body: JSON.stringify({
           name, 
-          userId: currentUser.id,
-          userEmail: currentUser.email,
+          userId: currentUser?.id,
+          userEmail: currentUser?.email,
         })
       })
       const group = await rawGroup.json();

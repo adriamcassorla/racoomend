@@ -28,7 +28,10 @@ const Add = ( { currentGroup, setDialog }: Props ) => {
     if (currentUser){
       setDialog(false);
       const newRecommendation = await addRecommendation( title, oneline, url, categories, currentUser.id, currentGroup )
-      setRecommendations((prev: Recommendation[]) => [...prev, newRecommendation]);
+      if (setRecommendations) {
+
+        setRecommendations((prev: Recommendation[]) => [...prev, newRecommendation]);
+      }
       }
     }
   

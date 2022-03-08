@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react'
 import CurrentUserContext from '../../../utils/context'
 import { useRouter } from 'next/router'
 
+
 // Components to load on the page and styles.
 import Head from 'next/head'
 import CategorySelector from '../../../components/Dashboard/CategorySelector'
@@ -16,23 +17,31 @@ import RecommendationList from '../../../components/Dashboard/RecommendationList
 import styles from '../../../styles/Dashboard.module.css';
 import ModalComponent from '../../../components/ModalComponent'
 
-// Getting the required Props from DB.
-export const getServerSideProps: GetServerSideProps = async ( {params} ) => {
-
-  const email = params?.id;
-  const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
-  const data = await res.json()
-  const { user, recommendations, groups} = data
-  return { props: { user, recommendations, groups }}
-}
-
+// typing API and JSON response
 type DashboardProps = {
   user: User,
   recommendations: Recommendation[],
   groups: Group[],
 }
 
+type JSONResponse = {
+  data: DashboardProps,
+}
+
+// Getting the required Props from DB.
+export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {params} ) => {
+  
+    const email = params?.id;
+    const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
+    const { data } : JSONResponse = await res.json()
+    const { user, recommendations, groups } = data
+    return { props: { user, recommendations, groups }}
+
+}
+
+
 const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
+  
 
   // Taking email from route.
   const router = useRouter();
@@ -40,19 +49,20 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
 
   // Checking if there is a session to act accordingly
   const { data: session } = useSession();
-  //@ts-ignore
-  const { currentUser, setUser, currentRecommendations, setRecommendations } = useContext(CurrentUserContext);
-  const [category, setCategory] = useState('');
-  const [currentGroup, setGroup] = useState('');
+  const { currentUser, setUser, currentRecommendations = [], setRecommendations } = useContext(CurrentUserContext);
+  const [category, setCategory] = useState<string>('');
+  const [currentGroup, setGroup] = useState<string>('');
   const [showGroupDialog, setGroupDialog] = useState(false);
   const [showReccomendationDialog, setRecommendationDialog] = useState(false);
 
   useEffect(() => {
-    //@ts-ignore
-    setUser(user);
-    //@ts-ignore
-    setRecommendations(recommendations);
+    if (setUser && setRecommendations) {
+
+      setUser(user);
+      setRecommendations(recommendations);
+    }
   }, [])
+
   console.log('From Dashboard', currentRecommendations);
   console.log('From Dashboard', currentUser);
   //@ts-ignore
@@ -63,6 +73,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
         <h3>Please Sign in to access your own content.</h3>
       </div> )
   }
+
   return (
     <div className={styles.dashboardContainer}>
       <Head>

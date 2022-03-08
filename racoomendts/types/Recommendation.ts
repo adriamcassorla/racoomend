@@ -11,7 +11,7 @@ export interface Recommendation {
   url: string;
   author?: User;
   authorId: string;
-  categories: string;
+  categories?: string;
   group?: Group;
   groupId: string;
 }
