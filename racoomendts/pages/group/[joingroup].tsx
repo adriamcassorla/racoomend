@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { join } from 'path';
 
 const APIJoinGroup = async ( joingroup: string ) => {
-  const rawUser = await fetch(`http://localhost:3000/api/group/${joingroup}`)
+  const rawUser = await fetch(`http://${process.env.BASE_URL}/api/group/${joingroup}`)
   return await rawUser.json();
 }
 

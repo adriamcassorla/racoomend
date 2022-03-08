@@ -1,4 +1,3 @@
-import type { GetStaticProps } from 'next'
 import styles from '../styles/Login.module.css'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import { signIn, signOut, useSession } from 'next-auth/react'

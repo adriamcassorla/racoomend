@@ -15,7 +15,7 @@ const RecommendationComponent = ({ recommendation }: Props) => {
   const handleDelete = async () => {
     const deletedRecommendation = await deleteRecommendation(recommendation.id);
     // Force parent component to rerender after deletion.
-    //@ts-ignore
+    if (setRecommendations)
     setRecommendations((prev: Recommendation[]) => {
       return prev.filter((el) => el != recommendation);
     })

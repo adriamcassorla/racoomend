@@ -29,7 +29,8 @@ type DashboardProps = {
 export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {params} ) => {
     console.log('From API')
     const email = params?.id;
-    const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
+    console.log(email);
+    const res = await fetch(`http://${process.env.BASE_URL}/api/recommendation/${email}`)
     const data = await res.json()
     const { user, recommendations, groups } = data
     

@@ -30,13 +30,20 @@
   color: #ffde00;
 }
 
+.link {
+  color: #ffde00;
+  margin-bottom: 8px;
+}
+
 .link:hover {
   text-shadow: 0.5px 0.5px 1px #1d1d1b;
-  color: #483b2b;
+  color: #dadada;
 }
 
 .linkContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #384047;
+  border-radius: 8px;
 }

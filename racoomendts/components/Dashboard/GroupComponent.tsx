@@ -21,7 +21,7 @@ const GroupComponent = ({setGroup, group, currentGroup}: Props) => {
   }
 
   const copyToClipBoard = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/api/group/${group.id}`)
+    navigator.clipboard.writeText(`http://${process.env.BASE_URL}/api/group/${group.id}`)
   }
 
   const linkClass = (currentGroup !== group.id ? styles.groupContainer : styles.selectedContainer)
