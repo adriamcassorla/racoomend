@@ -17,7 +17,7 @@ type Props = {
 const Add = ( { currentGroup, setDialog }: Props ) => {
 
   const router = useRouter();
-  const {currentUser, setRecommendations} = useContext(CurrentUserContext);
+  const {currentUser, currentRecommendations, setRecommendations} = useContext(CurrentUserContext);
   const [title, setTitle] = useState('');
   const [oneline, setOneline] = useState('');
   const [url, setUrl] = useState('');
@@ -32,6 +32,9 @@ const Add = ( { currentGroup, setDialog }: Props ) => {
 
         setRecommendations((prev: Recommendation[]) => [...prev, newRecommendation]);
       }
+      setTimeout(() => {
+        console.log(currentRecommendations, 'after addition')
+      }, 500)
       }
     }
   

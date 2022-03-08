@@ -17,15 +17,11 @@ import RecommendationList from '../../../components/Dashboard/RecommendationList
 import styles from '../../../styles/Dashboard.module.css';
 import ModalComponent from '../../../components/ModalComponent'
 
-// typing API and JSON response
+// typing API response and Props
 type DashboardProps = {
   user: User,
   recommendations: Recommendation[],
   groups: Group[],
-}
-
-type JSONResponse = {
-  data: DashboardProps,
 }
 
 // Getting the required Props from DB.
@@ -33,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {p
   
     const email = params?.id;
     const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
-    const { data } : JSONResponse = await res.json()
+    const data = await res.json()
     const { user, recommendations, groups } = data
     return { props: { user, recommendations, groups }}
 
@@ -86,7 +82,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
       </div>
       <div className={styles.rightContainer}>
         <CategorySelector setCategory={setCategory} category={category}/>
-        <RecommendationList setRecommendationDialog={setRecommendationDialog} category={category} currentGroup={currentGroup} recommendations={currentRecommendations}/>
+        <RecommendationList setRecommendationDialog={setRecommendationDialog} category={category} currentGroup={currentGroup} />
       </div>
 
       <ModalComponent category="Group" showDialog={showGroupDialog} setDialog={setGroupDialog}/>

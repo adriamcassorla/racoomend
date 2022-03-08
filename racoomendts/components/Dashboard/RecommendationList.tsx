@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../../styles/RecommendationList.module.css';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import { Recommendation } from '../../types/Recommendation';
@@ -7,28 +7,33 @@ import CreateReccomendation from './Buttons/Create Recommendation';
 import CurrentUserContext from '../../utils/context';
 
 type Props = {
-  recommendations: Recommendation[],
   category: string,
   currentGroup: string,
   setRecommendationDialog: Function,
 }
 
-const RecommendationList = ({ category, currentGroup, setRecommendationDialog, recommendations }: Props) => {
+const RecommendationList = ({ category, currentGroup, setRecommendationDialog }: Props) => {
 
+  const { currentRecommendations } = useContext(CurrentUserContext);
+  const [ showingRec, setShowingRec ] = useState(currentRecommendations);
+
+  useEffect(() => {
+    setShowingRec(currentRecommendations);
+  }, [currentRecommendations])
 
   const noCategory = () => {
     return (
       <h3>Select a Category from the list above</h3>
     )
   }
-  console.log(recommendations, 'from list');
+  console.log(currentRecommendations, 'from list');
   return (
     <div className={styles.listContainer}>
       <ul>
         { 
         !category ? noCategory() :
-        !recommendations ? null :
-        recommendations.filter((recommendation: Recommendation) => {
+        !showingRec ? null :
+        showingRec.filter((recommendation: Recommendation) => {
           return recommendation.categories === category;
         })
         .filter((recommendation: Recommendation) => {
@@ -55,7 +60,7 @@ export default RecommendationList;
 // import { Recommendation } from '../../types/Recommendation';
 // import { GetServerSideProps } from 'next';
 
-// const RecommendationList = ({ recommendations, category, currentGroup }: AppProps) => {
+// const RecommendationList = ({ currentRecommendations, category, currentGroup }: AppProps) => {
   
 
 //   const fetchReccomendations = async () => {

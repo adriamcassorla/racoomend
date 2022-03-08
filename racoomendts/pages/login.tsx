@@ -29,8 +29,11 @@ const Login = ({ }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image src="/raccoon.png" alt="Racoomend logo" width={200} height={143} />
-      <button onClick={() => signIn('google')}>Sign in with Google</button>
-      <button onClick={() => signIn('github')}>Sign in with GitHub</button>
+      <h3>Sign In</h3>
+      <div>
+        <button onClick={() => signIn('google')}><Image src="https://img.icons8.com/color/48/000000/google-logo.png" alt='Google Icon' width={40} height={40}/></button>
+        <button onClick={() => signIn('github')}><Image src="https://img.icons8.com/glyph-neue/64/000000/github.png" alt='GitHub Icon' width={40} height={40}/></button>
+      </div>
     </div>
   )
 }

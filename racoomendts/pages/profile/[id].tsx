@@ -13,10 +13,7 @@ import Head from 'next/head'
 import styles from '../../styles/Profile.module.css';
 import Image from 'next/image'
 
-type JSONResponse = {
-  data: DashboardProps,
-}
-
+// Typing API response and props
 type DashboardProps = {
   user: User,
   recommendations: Recommendation[],
@@ -29,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {p
 
   const email = params?.id;
   const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
-  const { data } : JSONResponse = await res.json()
+  const data = await res.json()
   const { user, recommendations, groups} = data
   return { props: { user, recommendations, groups }}
 }
