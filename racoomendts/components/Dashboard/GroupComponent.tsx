@@ -21,7 +21,7 @@ const GroupComponent = ({setGroup, group, currentGroup}: Props) => {
   }
 
   const copyToClipBoard = () => {
-    navigator.clipboard.writeText(`http://racoomend.vercel.app/api/group/${group.id}`)
+    navigator.clipboard.writeText(`https://racoomend.vercel.app/api/group/${group.id}`)
   }
 
   const linkClass = (currentGroup !== group.id ? styles.groupContainer : styles.selectedContainer)

@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {p
     console.log('From API')
     const email = params?.id;
     console.log(email);
-    const res = await fetch(`http://${process.env.BASE_URL}/api/recommendation/${email}`)
+    const res = await fetch(`https://${process.env.BASE_URL}/api/recommendation/${email}`)
     const data = await res.json()
     const { user, recommendations, groups } = data
     
