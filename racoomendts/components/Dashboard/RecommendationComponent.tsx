@@ -24,18 +24,18 @@ const RecommendationComponent = ({ recommendation }: Props) => {
   if (!currentUser) return <></>
   return (
     <div className={styles.recommendationContainer}>
-      <div>
+      <div className={styles.dataContainer}>
         <h4 className={styles.title}>{recommendation.title}</h4>
         <h6 className={styles.oneline}>{recommendation.oneline}</h6>
       </div>
-      <div>
-        <a href={recommendation.url}>Click for more Info!</a>
+      <div className={styles.actions}>
+        <a className={styles.url} href={recommendation.url}>Click for more external Info!</a>
+        { currentUser.id === recommendation.authorId ?
+          <div className={styles.deleteIcon}>
+            <p>Delete<button className={styles.dltBtn} onClick={handleDelete}>❌</button></p>
+          </div> : null
+        }
       </div>
-      { currentUser.id === recommendation.authorId ?
-        <div className={styles.deleteIcon}>
-          <button onClick={handleDelete}>❌</button>
-        </div> : null
-      }
     </div>
   )
 }

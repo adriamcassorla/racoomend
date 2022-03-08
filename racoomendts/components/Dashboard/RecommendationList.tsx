@@ -26,18 +26,15 @@ const RecommendationList = ({ category, currentGroup }: Props) => {
       </div>
     )
   }
-  console.log(currentRecommendations, 'from list');
+  
   return (
     <div className={styles.listContainer}>
       <ul>
         { 
         !category ? noCategory() :
-        !showingRec ? null :
-        showingRec.filter((recommendation: Recommendation) => {
-          return recommendation.categories === category;
-        })
-        .filter((recommendation: Recommendation) => {
-          return recommendation.groupId === currentGroup
+        !currentRecommendations ? null :
+        currentRecommendations.filter((recommendation: Recommendation) => {
+          return (recommendation.categories === category && recommendation.groupId === currentGroup)
         })
         .map((recommendation: Recommendation) => {
           return (<li key={recommendation.id}>

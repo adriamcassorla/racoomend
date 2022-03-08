@@ -22,7 +22,6 @@ export default async function handler(
           categories
         },
       }) 
-     
       res.status(200).json({ recommendation })
   
     } catch (e) {

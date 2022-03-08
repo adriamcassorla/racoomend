@@ -27,14 +27,14 @@ const Add = ( { currentGroup, setDialog }: Props ) => {
     e.preventDefault();
     if (currentUser){
       setDialog(false);
-      const newRecommendation = await addRecommendation( title, oneline, url, categories, currentUser.id, currentGroup )
+      const { recommendation } = await addRecommendation( title, oneline, url, categories, currentUser.id, currentGroup )
+      // console.log(newRecommendation.categories, 'categories on add')
+      // console.log(newRecommendation.groupId, 'group on add')
+      
       if (setRecommendations) {
 
-        setRecommendations((prev: Recommendation[]) => [...prev, newRecommendation]);
+        setRecommendations((prev: Recommendation[]) => [...prev, recommendation]);
       }
-      setTimeout(() => {
-        console.log(currentRecommendations, 'after addition')
-      }, 500)
       }
     }
   

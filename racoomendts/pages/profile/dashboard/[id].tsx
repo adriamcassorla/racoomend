@@ -27,11 +27,12 @@ type DashboardProps = {
 
 // Getting the required Props from DB.
 export const getServerSideProps: GetServerSideProps<DashboardProps> = async ( {params} ) => {
-  
+    console.log('From API')
     const email = params?.id;
     const res = await fetch(`http://localhost:3000/api/recommendation/${email}`)
     const data = await res.json()
     const { user, recommendations, groups } = data
+    
     return { props: { user, recommendations, groups }}
 
 }
@@ -46,17 +47,18 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
 
   // Checking if there is a session to act accordingly
   const { data: session } = useSession();
-  const { currentUser, setUser, currentRecommendations = [], setRecommendations } = useContext(CurrentUserContext);
+  const { currentUser, setUser, currentRecommendations, setRecommendations, currentGroups, setGroups } = useContext(CurrentUserContext);
   const [category, setCategory] = useState<string>('');
   const [currentGroup, setGroup] = useState<string>('');
   const [showGroupDialog, setGroupDialog] = useState(false);
   const [showReccomendationDialog, setRecommendationDialog] = useState(false);
 
   useEffect(() => {
-    if (setUser && setRecommendations) {
+    if (setUser && setRecommendations && setGroups) {
 
       setUser(user);
       setRecommendations(recommendations);
+      setGroups(groups);
     }
   }, [])
 
@@ -83,7 +85,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
         <div className={styles.dashboardContainer}>
         <div className={styles.leftContainer}>
           <div className={styles.groupsContainer}>
-            <GroupList groups={groups} currentGroup={currentGroup} setGroup={setGroup}/>
+            <GroupList currentGroup={currentGroup} setGroup={setGroup}/>
           </div>
           <div className={styles.groupButton}>
             <CreateGroup setGroupDialog={setGroupDialog} />

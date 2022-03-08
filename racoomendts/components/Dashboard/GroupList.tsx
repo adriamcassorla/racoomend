@@ -1,16 +1,20 @@
 // Functionality, types and db
+import { useContext } from 'react';
 import { Group } from '../../types/Group'
+import CurrentUserContext from '../../utils/context';
 import styles from './../../styles/GroupList.module.css'
 // Components
 import GroupComponent from './GroupComponent';
 
 type Props = {
-  groups: Group[];
   currentGroup: string;
   setGroup: Function;
 }
 
-const GroupList = ({ groups, currentGroup, setGroup }: Props) => {
+const GroupList = ({ currentGroup, setGroup }: Props) => {
+
+  const { currentGroups } = useContext(CurrentUserContext);
+
   return (
     <div className={styles.groupListContainer}>
       <div className={styles.groupTitle}>
@@ -18,7 +22,7 @@ const GroupList = ({ groups, currentGroup, setGroup }: Props) => {
       </div>
       <div className={styles.groupList}>
         <ul>
-          {groups ? groups.map((group: Group) => {
+          {currentGroups ? currentGroups.map((group: Group) => {
             return (
               <li key={group.id}>
                 <GroupComponent setGroup={setGroup} group={group} currentGroup={currentGroup}/>  

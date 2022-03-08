@@ -5,20 +5,52 @@
   justify-content: space-around;
   background-color: #dadada;
   border-radius: 5px;
-  
+}
+
+.dataContainer {
+  width: 40%;
+  text-align: left;
 }
 
 .deleteIcon {
-  cursor: pointer;
+  cursor: default;
   justify-self: flex-start;
 }
 
 .title {
   font-size: 1.2em;
+  margin-bottom: 0;
 }
 
 .oneline {
   margin: 15px;
   margin-left: 30px;
   font-size: 1em;
+}
+
+.url {
+  font-weight: 600;
+  transition: all ease-in-out 0.2;
+}
+
+.url:hover {
+  transform: scale(1.1);
+  color: #1d1d1b;
+}
+
+.actions {
+  font-weight: 500;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+}
+
+.dltBtn:hover {
+  transform: scale(1.05);
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+.dltBtn:active {
+  transform: scale(0.95);
 }

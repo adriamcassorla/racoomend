@@ -15,7 +15,8 @@ const AddGroup = ({ setDialog, showDialog }: Props) => {
 
   const router = useRouter();
   const [name, setName] = useState('');
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, setGroups } = useContext(CurrentUserContext);
+
   const addGroup = async (e: React.FormEvent ) => {
     setDialog(false);
     e.preventDefault();
@@ -32,7 +33,10 @@ const AddGroup = ({ setDialog, showDialog }: Props) => {
         })
       })
       const group = await rawGroup.json();
-      
+      if (setGroups) {
+
+        setGroups(prev => [...prev, group])
+      }
       return group;
 
     } catch (e) {
