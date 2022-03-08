@@ -72,13 +72,13 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
       <div className={styles.profileContainer}>
         <div className={styles.detailsContainer}>
           <Image src={session.user?.image ? session.user.image : '/raccoon.png'} alt="User profile image" width={'150px'} height={'150px'} className={styles.profileImg}/>
-          <h3>{user.firstname} {user.lastname}</h3>
-          <h5>{user.email}</h5>
+          <h3 className={styles.name}>{user.firstname} {user.lastname}</h3>
+          <h5 className={styles.email}>{user.email}</h5>
         </div>
         <div className={styles.contentContainer}>
           <div className={styles.groupsContainer}>          
-            <h3>You are currently in {groups.length} groups</h3>
-            <ul>
+            <h3>You are currently in {groups.length} groups 🙌</h3>
+            <ul className={styles.list}>
               {groups.map(group => {
                 return (
                   <li key={group.id}>
@@ -89,9 +89,9 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
             </ul>
           </div>
           <div className={styles.recommendationsContainer}>
-            <h3>Have a total of {recommendations.length} recommendations</h3>
+            <h3>Have a total of {recommendations.length} recommendations ✔️</h3>
             <ul className={styles.recList}>
-              <h4>These are the ones given by you.</h4>
+              <h4>These are the ones given by you:</h4>
               {recommendations.filter(recommendation => {
                 return recommendation.authorId === user.id
               }).map(recommendation => {

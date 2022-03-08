@@ -5,15 +5,27 @@
 }
 
 .detailsContainer {
+  padding-top: 100px;
+  margin-right: -200px;
+  width:max-content;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: space-around;
 }
 
 .contentContainer {
   justify-self: flex-start;
   font-weight: 500;
+}
+
+.name {
+  font-size: 2em;
+  margin-bottom: 0px;
+}
+
+.email {
+  font-size: 1em;
 }
 
 .notAllowed {
@@ -29,4 +41,8 @@
 
 .profileContainer {
   display: flex;
+}
+
+.list {
+  list-style-type: circle;
 }

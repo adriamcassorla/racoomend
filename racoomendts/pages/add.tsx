@@ -54,7 +54,7 @@ const Add = ( { currentGroup, setDialog }: Props ) => {
         <input className={styles.formInput} id='oneline' name='oneline' type="text" placeholder="Short description of your recommendation" value={oneline} onChange={(e) => setOneline(e.target.value)} required/>
 
         <label htmlFor='url'>URL</label>
-        <input className={styles.formInput} id='url' name='url' type="text" placeholder="Provide a url with more relevant info" value={url} onChange={(e) => setUrl(e.target.value)}/>
+        <input className={styles.formInput} id='url' name='url' type="url" placeholder="Provide a url with more relevant info" value={url} onChange={(e) => setUrl(e.target.value)}/>
         
         <label htmlFor="categories">Choose a category</label>
         <select className={styles.selectMenu} id="categories"name="gender" value={categories} onChange={(e) => setCategories(e.target.value)} required>
