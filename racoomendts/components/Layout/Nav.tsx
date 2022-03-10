@@ -1,60 +1,84 @@
 import { useContext } from 'react';
 import CurrentUserContext from '../../utils/context';
+
+import { useRouter } from 'next/router';
+import { useSession, signOut } from 'next-auth/react';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './../../styles/Header.module.css'
-import { useRouter } from 'next/router';
-import { useSession, signIn, signOut } from 'next-auth/react';
+
+import styles from './../../styles/Header.module.css';
 
 const Nav = () => {
-  
-  const { currentUser, setUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const router = useRouter();
-  const { data: session } = useSession()
-  
-  if (router.asPath === '/' || router.asPath === '/login' ) {
 
+  const { data: session } = useSession();
+
+  if (router.asPath === '/' || router.asPath === '/login') {
     return (
       <header className={styles.fullbarRoot}>
-      <div className={styles.logoContainer}>
-        <Image src="/Racoomend.png" alt="Racoomend logo" width={440} height={100} />
-      </div>
-    </header>
-    )
+        <div className={styles.logoContainer}>
+          <Image
+            src="/Racoomend.png"
+            alt="Racoomend logo"
+            width={440}
+            height={100}
+          />
+        </div>
+      </header>
+    );
   }
-  return (
 
+  return (
     <header className={styles.fullbar}>
-      {session && currentUser? 
+      {session && currentUser ? (
         <div className={styles.profileContainer}>
           <Link href={`/profile/${currentUser.email}`} passHref>
-            <Image src={session.user?.image ? session.user.image : '/raccoon.png'} alt="User profile image" width={'50px'} height={'50px'} className={styles.profileImg}/>
+            <a>
+              <Image
+                src={session.user?.image ? session.user.image : '/raccoon.png'}
+                alt="User profile image"
+                width={'50px'}
+                height={'50px'}
+                className={styles.profileImg}
+              />
+            </a>
           </Link>
           <Link href={`/profile/dashboard/${currentUser.email}`} passHref>
             <button className={styles.dashboardBtn}>Dashboard</button>
           </Link>
         </div>
-        : null
-      }
+      ) : null}
       <div className={styles.logoContainer}>
-        <Link href="/profile/dashboard/2" passHref={true}>
-          <div>
-            <Image src="/Racoomend.png" alt="Racoomend logo" width={440} height={100} />
-          </div>
-        </Link>
+        <div>
+          <Image
+            src="/Racoomend.png"
+            alt="Racoomend logo"
+            width={440}
+            height={100}
+          />
+        </div>
       </div>
 
-      {session ? 
+      {session ? (
         <div>
-          <button className={styles.signInBtn} onClick={() => signOut()}>Sign Out</button>
+          <button className={styles.signInBtn} onClick={() => signOut()}>
+            Sign Out
+          </button>
         </div>
-       : 
+      ) : (
         <div>
-          <button className={styles.signOutBtn} onClick={() => router.push('/login')}>Sign In</button>
+          <button
+            className={styles.signOutBtn}
+            onClick={() => router.push('/login')}
+          >
+            Sign In
+          </button>
         </div>
-      }
+      )}
     </header>
-  )
+  );
 };
 
 export default Nav;
