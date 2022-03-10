@@ -1,6 +1,7 @@
 import { Recommendation } from "../../types/Recommendation";
 
-const addRecommendation = async (title: string, oneline: string, url: string, categories: string, authorId: string, groupId: string ) => {
+// Try to reduce this.
+const addRecommendation = async (title: string, oneline: string, url: string, categories: string, authorId: string, groupId: string) => {
   try {
     const rawRecommendation = await fetch('/api/recommendation/newRecommend', {
       method: 'POST',
@@ -8,9 +9,10 @@ const addRecommendation = async (title: string, oneline: string, url: string, ca
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        title, oneline, url, categories, 
+        title, oneline, url, categories,
         authorId,
-        groupId, })
+        groupId,
+      })
     })
     const recommendation = rawRecommendation.json();
     return recommendation;

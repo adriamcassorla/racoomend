@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./../../styles/CategorySelector.module.css";
 
 type Props = {
+  category: string;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
 };
 

@@ -3,9 +3,7 @@ import type { GetServerSideProps } from "next";
 import { User } from "../../types/User";
 import { Group } from "../../types/Group";
 import { Recommendation } from "../../types/Recommendation";
-import { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import CurrentUserContext from "../../utils/context";
 import { useRouter } from "next/router";
 
 // Components to load on the page and styles.
@@ -40,16 +38,8 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
 
   // Checking if there is a session to act accordingly
   const { data: session } = useSession();
-  // Loading context.
-  // @ts-ignore
-  const { currentUser, setUser } = useContext(CurrentUserContext);
-  useEffect(() => {
-    if (setUser) {
-      setUser(user);
-    }
-  }, []);
-  //@ts-ignore
-  if (!session || (session && session.user.email !== id)) {
+
+  if (!session || (session && session.user?.email !== id)) {
     return (
       <div className={styles.notAllowed}>
         <div>

@@ -1,9 +1,9 @@
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { Group } from "../../types/Group";
 import styles from "./../../styles/GroupComponent.module.css";
 
 type Props = {
-  setGroup: Function;
+  setGroup: React.Dispatch<React.SetStateAction<string>>;
   group: Group;
   currentGroup: string;
 };

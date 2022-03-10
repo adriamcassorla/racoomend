@@ -3,32 +3,27 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../lib/prisma';
 import { User } from './../../types/User';
 
-type Data = {
-  user?: User[];
-  e?: unknown;
-}
-
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<{ user: User[] } | { e: Error | {} }>
 ) {
   try {
 
-    if ( req.method === 'GET') {
+    if (req.method === 'GET') {
       try {
-        const user = await prisma.user.findMany({}) 
+        const user = await prisma.user.findMany({})
         if (!user) {
-          res.status(404).json({});
+          res.status(40).json({ e: new Error('No user found') })
         } else {
-          res.status(200).json({user})
+          res.status(200).json({ user })
         }
       } catch (e) {
-      console.error(e);
-      res.json({e});
-    }
+        console.error(e);
+        res.json({ e: e as Error });
+      }
     }
   } catch (e) {
     console.error(e);
-    res.json({e: {"Failed": "Failure"}})
+    res.json({ e: { "Failed": "Failure" } })
   }
 }

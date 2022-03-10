@@ -14,23 +14,22 @@ export default NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    
+
     // ...add more providers here
   ],
   jwt: {
-    secret: process.env.JWT_SECRET,   
+    secret: process.env.JWT_SECRET,
   },
   callbacks: {
-    async signIn({user}) {
-        const dbuser = await prisma.user.findUnique({
-          where: {
-            //@ts-ignore
-            email: user.email,
-          }
-        })
-        if(!dbuser) {
-          //@ts-ignore
-          const names = user.name.split(' ');
+    async signIn({ user }) {
+      const dbuser = await prisma.user.findUnique({
+        where: {
+          email: user.email as string,
+        }
+      })
+      if (!dbuser) {
+        const names = user.name?.split(' ');
+        if (names) {
           const newUser = await prisma.user.create({
             data: {
               email: user.email as string,
@@ -39,6 +38,7 @@ export default NextAuth({
             }
           })
         }
+      }
       return true
     }
   }

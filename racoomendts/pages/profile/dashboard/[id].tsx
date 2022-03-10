@@ -13,10 +13,9 @@ import Head from "next/head";
 import CategorySelector from "../../../components/Dashboard/CategorySelector";
 import GroupList from "../../../components/Dashboard/GroupList";
 import RecommendationList from "../../../components/Dashboard/RecommendationList";
-import CreateRecommendation from "../../../components/Dashboard/Buttons/Create Recommendation";
+import CreateButton from "../../../components/Dashboard/CreateButton";
 import styles from "../../../styles/Dashboard.module.css";
 import ModalComponent from "../../../components/ModalComponent";
-import CreateGroup from "../../../components/Dashboard/Buttons/CreateGroup";
 // typing API response and Props
 type DashboardProps = {
   user: User;
@@ -93,7 +92,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
             <GroupList currentGroup={currentGroup} setGroup={setGroup} />
           </div>
           <div className={styles.groupButton}>
-            <CreateGroup setGroupDialog={setGroupDialog} />
+            <CreateButton setDialog={setGroupDialog} text={"Add a new group"} />
           </div>
         </div>
         <div className={styles.rightContainer}>
@@ -107,8 +106,9 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
             />
           </div>
           <div className={styles.createRecContainer}>
-            <CreateRecommendation
-              setRecommendationDialog={setRecommendationDialog}
+            <CreateButton
+              setDialog={setRecommendationDialog}
+              text={"Add a new Recomendation"}
             />
           </div>
         </div>

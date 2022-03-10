@@ -1,48 +1,42 @@
 import { useState, useContext } from "react";
-import styles from "../../styles/Add.module.css"
-import { useRouter } from "next/router";
+import styles from "../../styles/Add.module.css";
 import CurrentUserContext from "../../utils/context";
 
 import Head from "next/head";
 import Image from "next/image";
 
 type Props = {
-  showDialog: boolean,
-  setDialog: Function;
-}
+  setDialog: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const AddGroup = ({ setDialog, showDialog }: Props) => {
-
-  const router = useRouter();
-  const [name, setName] = useState('');
+const AddGroup = ({ setDialog }: Props) => {
+  const [name, setName] = useState("");
   const { currentUser, setGroups } = useContext(CurrentUserContext);
 
-  const addGroup = async (e: React.FormEvent ) => {
+  const addGroup = async (e: React.FormEvent) => {
     setDialog(false);
     e.preventDefault();
     try {
-      const rawGroup = await fetch('/api/group/newGroup', {
-        method: 'POST',
+      const rawGroup = await fetch("/api/group/newGroup", {
+        method: "POST",
         headers: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
         },
         body: JSON.stringify({
-          name, 
+          name,
           userId: currentUser?.id,
           userEmail: currentUser?.email,
-        })
-      })
+        }),
+      });
       const group = await rawGroup.json();
       if (setGroups) {
-
-        setGroups(prev => [...prev, group])
+        setGroups((prev) => [...prev, group]);
       }
       return group;
-
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -54,12 +48,23 @@ const AddGroup = ({ setDialog, showDialog }: Props) => {
       <Image src="/raccoon.png" alt="Racoomend logo" width={200} height={143} />
       <form onSubmit={addGroup} className={styles.addForm}>
         <label htmlFor="name">Name</label>
-        <input className={styles.formInput} id="name" name="name" type="text" placeholder="Cool name goes here" value={name} onChange={(e) => setName(e.target.value)} required/>
-        
-        <button type='submit' className={styles.addButton}>Create Group</button>
+        <input
+          className={styles.formInput}
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Cool name goes here"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+
+        <button type="submit" className={styles.addButton}>
+          Create Group
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default AddGroup;

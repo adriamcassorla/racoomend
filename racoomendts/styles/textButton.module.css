@@ -1,9 +1,14 @@
-.newGroupBtn {
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
   background: none;
   border: none;
   margin: 20px 0;
 }
 
-.newGroupBtn:hover {
+.btn:hover {
   text-shadow: 0.5px 0.5px 1px #1d1d1b;
 }
