@@ -29,7 +29,7 @@
 }
 
 .profileImg:active {
-  transform: scale(0.95); 
+  transform: scale(0.95);
 }
 
 .dashboardBtn {
@@ -71,7 +71,7 @@
 .signInBtn:hover {
   text-decoration: underline;
   color: #ffde00;
-  text-shadow: 0.2px 0.2px #dadada; 
+  text-shadow: 0.2px 0.2px #dadada;
 }
 
 .signOutBtn {
@@ -87,23 +87,3 @@
   color: #ffde00;
   text-shadow: 0.2px 0.2px #dadada;
 }
-
-/* .addButton {
-  background-color: #dadada;
-  padding: 8px;
-  border: none;
-  font-weight: 700;
-  border-radius: 8px;
-  padding: 10px;
-  transition:all ease-in-out 0.2;
-}
-
-.addButton:hover {
-  transform: scale(1.02);
-  background-color: #ededed;
-}
-
-.addButton:active {
-  transform: scale(0.97);
-  opacity: 0.8;
-} */
