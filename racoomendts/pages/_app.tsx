@@ -7,11 +7,7 @@ import { useState } from "react";
 import { User } from "../types/User";
 import { Recommendation } from "../types/Recommendation";
 import { Group } from "../types/Group";
-import {
-  userMock,
-  recommendationMock,
-  mockGroup,
-} from "../utils/APIfunctions/mocks";
+import { userMock, recommendationMock, mockGroup } from "../utils/mocks";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [currentUser, setUser] = useState<User>(userMock);
