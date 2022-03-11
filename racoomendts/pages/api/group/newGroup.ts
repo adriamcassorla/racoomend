@@ -20,8 +20,8 @@ export default async function handler(
       res.status(201).json(group);
 
     } catch (e) {
-      console.error(e);
       res.status(403).redirect(`/profile/dashboard/${userEmail}`)
+      //console.error(e);
     }
   }
   else res.status(403).redirect(`/profile/dashboard/${userEmail}`)
