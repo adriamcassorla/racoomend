@@ -16,9 +16,9 @@ const Home = () => {
           <h3 className={styles.subTitle}>
             Spending more time choosing a netflix movie than watching it?
           </h3>
-          <h2 className={styles.mainTitle}>
+          <h1 className={styles.mainTitle}>
             Trust your friends, they know you better.
-          </h2>
+          </h1>
           <Link href="/login" passHref>
             <div>
               <button className={styles.CTA}>Start Racoomending</button>
