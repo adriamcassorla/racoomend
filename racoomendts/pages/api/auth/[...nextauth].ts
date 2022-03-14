@@ -42,13 +42,4 @@ export default NextAuth({
       return true
     }
   }
-  // session: {
-  //   strategy: 'jwt',
-  // },
-  // jwt: {
-  //   secret: process.env.JWT_SECRET,
-  // },
-  // pages: {
-  //   signIn: '/login',
-  // }
 })

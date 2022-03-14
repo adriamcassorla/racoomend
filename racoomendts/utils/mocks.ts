@@ -1,26 +1,26 @@
 export const userMock = {
-  id: "b4d90384-5594-4e8a-9ab6-c35dc23a6b2a",
+  id: "07253f05-e181-4e11-9ef3-75edc1ea5f0f",
   createdAt: new Date("2022-03-05T20:39:31.473Z"),
   updatedAt: new Date("2022-03-05T20:39:31.470Z"),
-  email: "nicolopez413@gmail.com",
-  firstname: "Nico",
-  lastname: "Lopez",
+  email: "adria@adriamartinez.cat",
+  firstname: "Adrià",
+  lastname: "Martínez",
 }
 
 export const recommendationMock = {
-  id: "eaacc1ff-95f8-417a-b70f-40b7f40931f4",
+  id: "ebbd0647-13f9-4594-9a64-527b3c1d55db",
   createdAt: new Date("2022-03-04T17:29:30.836Z"),
   updatedAt: new Date("2022-03-04T17:29:30.836Z"),
   title: "Best coding bootcamp",
   oneline: "Lock yourself for 3 months",
   url: "codeworks.me",
-  authorId: "a85b2fc0-495a-450a-940f-d26ae10e4fbe",
+  authorId: "07253f05-e181-4e11-9ef3-75edc1ea5f0f",
   categories: "ARTICLE",
-  groupId: "96ecde36-0462-4e11-8841-3bb2d882f7b1",
+  groupId: "8914fd59-5979-47c1-8fae-8f64142d8f1f",
 };
 
 export const mockGroup = {
-  id: "c0d0aa18-b92e-4eb9-8b73-5c6d63087fc9",
+  id: "8914fd59-5979-47c1-8fae-8f64142d8f1f",
   createdAt: new Date("2022-03-08T14:15:59.334Z"),
   updatedAt: new Date("2022-03-08T14:15:59.334Z"),
   name: "Local",

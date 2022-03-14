@@ -1,6 +1,6 @@
 import styles from "../styles/Login.module.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
@@ -11,12 +11,6 @@ const Login = ({}: AppProps) => {
   const { data: session } = useSession();
   if (session) {
     router.push(`/profile/dashboard/${session.user?.email}`);
-    // return (
-    //   <>
-    //     Signed in as {session.user?.email} <br />
-    //     <button onClick={() => signOut()}>Sign out</button>
-    //   </>
-    // )
   }
 
   //TODO: Render a loader while is logging in.
@@ -53,13 +47,3 @@ const Login = ({}: AppProps) => {
 };
 
 export default Login;
-
-//       <form onSubmit={loginUser} className={styles.logForm}>
-//         <label htmlFor="name">Email</label>
-//         <input className={styles.formInput} id="name" name="name" type="email" autoComplete="email" placeholder="email@youremail.com" required/>
-//         <label htmlFor='password'>Password</label>
-//         <input className={styles.formInput} id='password' name='password' type="password" placeholder="Tell me your secrets" required/>
-//         <button type='submit' className={styles.loginButton} onClick={() => signIn()}>Log In</button>
-//         <p className={styles.signupLink}>Don{"'"}t have an account? <Link href="/signup"><a>Sign up!</a></Link></p>
-//       </form>
-//         <button onClick={() => signIn('github')}>Sign In with GitHub</button>
