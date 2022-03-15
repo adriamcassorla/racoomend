@@ -3,6 +3,7 @@ import prisma from '../../../lib/prisma';
 import { Group } from '../../../types/Group';
 
 import nc from "next-connect";
+import cors from 'cors'
 
 const deleteGroup = async (
   req: NextApiRequest,
@@ -44,7 +45,9 @@ const addNewGroup = async (
   }
 }
 
+
 const handler = nc()
+  .use(cors())
   .post(addNewGroup)
   .delete(deleteGroup);
 
