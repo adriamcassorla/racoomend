@@ -79,7 +79,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
 
   return (
     <div>
-      <div>
+      <div id="authorisedPage">
         <Head>
           <title>Dashboard</title>
           <meta name="Dashboard" content="Interact with recommendations" />

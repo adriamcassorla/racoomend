@@ -12,8 +12,35 @@ context("Home page", () => {
     );
   });
 
-  it("should appear a raccoon", () => {
-    const test = cy.get("img");
-    console.log(test);
+  it("images should have alt text", () => {
+    cy.get("img").each(($el) => {
+      cy.wrap($el).should("have.attr", "alt");
+    });
+  });
+
+  it("should have a start button", () => {
+    cy.findByRole("button", "Start Racoomending").click();
+  });
+});
+
+context("Log In Button", () => {
+  it("Start button should guide you to sign in page", () => {
+    cy.visit("http://localhost:3000");
+    cy.findByRole("button", "Start Racoomending").click();
+    cy.findByText("Sign In");
+  });
+
+  it("should have google and github buttons", () => {
+    cy.findByAltText("Google Icon");
+    cy.findByAltText("GitHub Icon");
+  });
+});
+
+context("Not authorised user", () => {
+  it("should block access to dashboard if user is not authorised", () => {
+    cy.visit("http://localhost:3000/profile/dashboard/adria@adriamartinez.cat");
+    cy.get("h2").contains(
+      "Don't meddle into other people's issues little raccoon!"
+    );
   });
 });

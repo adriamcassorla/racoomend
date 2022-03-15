@@ -25,7 +25,7 @@ const Login = ({}: AppProps) => {
       <Image src="/raccoon.png" alt="Racoomend logo" width={200} height={143} />
       <h3>Sign In</h3>
       <div>
-        <button onClick={() => signIn("google")}>
+        <button id="googleSignIn" onClick={() => signIn("google")}>
           <Image
             src="https://img.icons8.com/color/48/000000/google-logo.png"
             alt="Google Icon"
