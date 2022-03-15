@@ -34,12 +34,13 @@ const RecommendationComponent = ({ recommendation }: Props) => {
         </a>
         {currentUser.id === recommendation.authorId ? (
           <div className={styles.deleteIcon}>
-            <p>
-              Delete
-              <button className={styles.dltBtn} onClick={handleDelete}>
-                ❌
-              </button>
-            </p>
+            <button
+              id="deleteButton"
+              className={styles.dltBtn}
+              onClick={handleDelete}
+            >
+              Delete ❌
+            </button>
           </div>
         ) : null}
       </div>
