@@ -1,11 +1,13 @@
-import { useState, useContext } from "react";
-import styles from "../styles/Add.module.css";
-import addRecommendation from "../utils/APIfunctions/addRecommendation";
+import { useState, useContext } from 'react';
+import styles from '../styles/Add.module.css';
+import addRecommendation from '../utils/APIfunctions/addRecommendation';
 
-import Head from "next/head";
-import Image from "next/image";
-import CurrentUserContext from "../utils/context";
-import { Recommendation } from "../types/Recommendation";
+import Head from 'next/head';
+import Image from 'next/image';
+import CurrentUserContext from '../utils/context';
+import { Recommendation } from '../types/Recommendation';
+
+import categories from '../utils/categories';
 
 type Props = {
   currentGroup: string;
@@ -14,10 +16,10 @@ type Props = {
 
 const Add = ({ currentGroup, setDialog }: Props) => {
   const { currentUser, setRecommendations } = useContext(CurrentUserContext);
-  const [title, setTitle] = useState("");
-  const [oneline, setOneline] = useState("");
-  const [url, setUrl] = useState("");
-  const [categories, setCategories] = useState("ARTICLE");
+  const [title, setTitle] = useState('');
+  const [oneline, setOneline] = useState('');
+  const [url, setUrl] = useState('');
+  const [category, setcategory] = useState('ARTICLE');
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const Add = ({ currentGroup, setDialog }: Props) => {
         title,
         oneline,
         url,
-        categories,
+        category,
         currentUser.id,
         currentGroup
       );
@@ -88,19 +90,20 @@ const Add = ({ currentGroup, setDialog }: Props) => {
           onChange={(e) => setUrl(e.target.value)}
         />
 
-        <label htmlFor="categories">Choose a category</label>
+        <label htmlFor="category">Choose a category</label>
         <select
           className={styles.selectMenu}
-          id="categories"
+          id="category"
           name="gender"
-          value={categories}
-          onChange={(e) => setCategories(e.target.value)}
+          value={category}
+          onChange={(e) => setcategory(e.target.value)}
           required
         >
-          <option value="ARTICLE">Article</option>
-          <option value="MOVIE">Movie</option>
-          <option value="BOOK">Book</option>
-          <option value="RESTAURANT">Restaurant</option>
+          {categories.map((category) => (
+            <option key={category} value={category.slice(0,-1).toUpperCase()}>
+              {category}
+            </option>
+          ))}
         </select>
         <button type="submit" className={styles.addButton}>
           Create Recommendation

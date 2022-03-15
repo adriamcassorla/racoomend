@@ -5,10 +5,7 @@ import { Recommendation } from "../../types/Recommendation";
 import RecommendationComponent from "./RecommendationComponent";
 import CurrentUserContext from "../../utils/context";
 
-type Props = {
-  category: string;
-  currentGroup: string;
-};
+import Props from "../../types/RecommendationListProps"
 
 const RecommendationList = ({ category, currentGroup }: Props) => {
   const { currentRecommendations } = useContext(CurrentUserContext);
@@ -25,7 +22,7 @@ const RecommendationList = ({ category, currentGroup }: Props) => {
         })
       );
     }
-  }, [currentRecommendations]);
+  }, [category, currentRecommendations]);
 
   const noCategory = () => {
     return (

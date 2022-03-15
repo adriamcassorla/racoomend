@@ -1,27 +1,14 @@
-// Functionality types, components types, functions and DB model.
-import type { GetServerSideProps } from "next";
-import { User } from "../../../types/User";
-import { Group } from "../../../types/Group";
-import { Recommendation } from "../../../types/Recommendation";
 import { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import CurrentUserContext from "../../../utils/context";
 import { useRouter } from "next/router";
+import type { GetServerSideProps } from "next";
 
-// Components to load on the page and styles.
+import CurrentUserContext from "../../../utils/context";
+import DashboardProps from "../../../types/DashboardProps";
+
 import Head from "next/head";
-import CategorySelector from "../../../components/Dashboard/CategorySelector";
-import GroupList from "../../../components/Dashboard/GroupList";
-import RecommendationList from "../../../components/Dashboard/RecommendationList";
-import CreateButton from "../../../components/Dashboard/CreateButton";
+import {CategorySelector, GroupList, RecommendationList, CreateButton, ModalComponent} from "../../../components/index";
 import styles from "../../../styles/Dashboard.module.css";
-import ModalComponent from "../../../components/ModalComponent";
-// typing API response and Props
-type DashboardProps = {
-  user: User;
-  recommendations: Recommendation[];
-  groups: Group[];
-};
 
 // Getting the required Props from DB.
 export const getServerSideProps: GetServerSideProps<DashboardProps> = async ({
@@ -34,8 +21,8 @@ export const getServerSideProps: GetServerSideProps<DashboardProps> = async ({
     `${process.env.BASE_URL}/api/recommendation/${email}`
   );
   const data = await res.json();
+  console.log(data)
   const { user, recommendations, groups } = data;
-
   return { props: { user, recommendations, groups } };
 };
 
@@ -47,11 +34,8 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
   // Checking if there is a session to act accordingly
   const { data: session } = useSession();
   const {
-    currentUser,
     setUser,
-    currentRecommendations,
     setRecommendations,
-    currentGroups,
     setGroups,
   } = useContext(CurrentUserContext);
   const [category, setCategory] = useState<string>("");
@@ -97,7 +81,7 @@ const Dashboard = ({ user, recommendations, groups }: DashboardProps) => {
         </div>
         <div className={styles.rightContainer}>
           <div className={styles.categoryContainer}>
-            <CategorySelector setCategory={setCategory} category={category} />
+            <CategorySelector setCategory={setCategory}/>
           </div>
           <div className={styles.recommendationsContainer}>
             <RecommendationList

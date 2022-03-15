@@ -1,33 +1,25 @@
 import React from "react";
 import styles from "./../../styles/CategorySelector.module.css";
 
-type Props = {
-  category: string;
-  setCategory: React.Dispatch<React.SetStateAction<string>>;
-};
+import categories from "../../utils/categories";
 
-const CategorySelector = ({ setCategory }: Props) => {
+type PropsType = {setCategory : React.Dispatch<React.SetStateAction<string>>}
+
+const CategorySelector = ({ setCategory }: PropsType) => {
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setCategory(e.currentTarget.value);
   };
 
-  const categories: { [key: string]: string } = {
-    movie: "Movies",
-    book: "Books",
-    restaurant: "Restaurants",
-    article: "Articles",
-  };
-
   return (
     <ul className={styles.list}>
-      {Object.keys(categories).map((cat) => (
-        <li key={cat}>
+      {categories.map((category) => (
+        <li key={category}>
           <button
             className={styles.category}
-            value={cat.toUpperCase()}
+            value={category.slice(0,-1).toUpperCase()}
             onClick={onClick}
-          >
-            {categories[cat]}
+            >
+            {category}
           </button>
         </li>
       ))}
