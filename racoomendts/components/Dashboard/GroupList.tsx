@@ -20,7 +20,7 @@ const GroupList = ({ currentGroup, setGroup }: Props) => {
         <h2>Groups you are in</h2>
       </div>
       <div className={styles.groupList}>
-        <ul>
+        <ul id="groupsList">
           {currentGroups
             ? currentGroups.map((group: Group) => {
                 return (

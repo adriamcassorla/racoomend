@@ -1,10 +1,27 @@
+// @ts-nocheck
 /// <reference types="cypress"/>
 
 describe("Login page", () => {
-  before(() => {
-    cy.visit("/login");
+  it("Start button should guide you to sign in page", () => {
+    cy.visit("http://localhost:3000");
+    cy.findByRole("button", "Start Racoomending").click();
+    cy.findByText("Sign In");
   });
-  it("Login with Google", () => {
+
+  it("should have google and github buttons", () => {
+    cy.findByAltText("Google Icon");
+    cy.findByAltText("GitHub Icon");
+  });
+
+  it("should block access to dashboard if user is not authorised", () => {
+    cy.visit("http://localhost:3000/profile/dashboard/adria@adriamartinez.cat");
+    cy.get("h2").contains(
+      "Don't meddle into other people's issues little raccoon!"
+    );
+  });
+
+  it("should login with Google and show dashboard", () => {
+    cy.visit("http://localhost:3000/login");
     const username = Cypress.env("GOOGLE_USER");
     const password = Cypress.env("GOOGLE_PW");
     const loginUrl = Cypress.env("SITE_NAME");
@@ -40,11 +57,6 @@ describe("Login page", () => {
           Cypress.Cookies.defaults({
             preserve: cookieName,
           });
-
-          // // remove the two lines below if you need to stay logged in
-          // // for your remaining tests
-          // cy.visit("/api/auth/signout");
-          // cy.get("form").submit();
         }
       });
   });

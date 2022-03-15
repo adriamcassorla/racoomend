@@ -13,7 +13,7 @@ const CreateButton = ({ setDialog, text }: Props) => {
   return (
     <div className={styles.btnContainer}>
       <button className={styles.btn} onClick={handleClick}>
-        <h3>{text}</h3>
+        {text}
       </button>
     </div>
   );
