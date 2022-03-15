@@ -17,7 +17,6 @@ const RecommendationComponent = ({ recommendation }: Props) => {
       setRecommendations((prev: Recommendation[]) => {
         return prev.filter((el) => el != recommendation);
       });
-    return deletedRecommendation;
   };
 
   // TODO: Add loader
