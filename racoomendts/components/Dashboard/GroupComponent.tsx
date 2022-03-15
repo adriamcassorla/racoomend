@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Group } from "../../types/Group";
-import styles from "./../../styles/GroupComponent.module.css";
+import { Group } from '../../types/Group';
+import styles from './../../styles/GroupComponent.module.css';
+
+import deleteGroup from '../../utils/APIfunctions/deleteGroup';
 
 type Props = {
   setGroup: React.Dispatch<React.SetStateAction<string>>;
@@ -9,14 +10,9 @@ type Props = {
 };
 
 const GroupComponent = ({ setGroup, group, currentGroup }: Props) => {
-  const [showLink, setShowLink] = useState(false);
-  console.log(currentGroup);
+
   const handleClick = () => {
     setGroup(group.id);
-  };
-
-  const toggle = () => {
-    setShowLink((showing) => !showing);
   };
 
   const copyToClipBoard = () => {
@@ -33,23 +29,14 @@ const GroupComponent = ({ setGroup, group, currentGroup }: Props) => {
   return (
     <div onClick={handleClick} className={linkClass}>
       <h3 className={styles.groupName}>{group.name}</h3>
-      {showLink ? (
-        <div className={styles.linkContainer}>
-          <div>
-            <p>Share this link!</p>
-            <button className={styles.link} onClick={copyToClipBoard}>
-              Click here to copy the link
-            </button>
-          </div>
-          <div>
-            <button onClick={toggle}>❌</button>
-          </div>
+        <div>
+          <button className={styles.inviteBtn} onClick={copyToClipBoard}>
+          Copy invite link 📋
+          </button>
+          <button className={styles.inviteBtn} onClick={() => deleteGroup(group.id)}>
+          Delete group ❌
+          </button>
         </div>
-      ) : (
-        <button className={styles.inviteBtn} onClick={toggle}>
-          Invite
-        </button>
-      )}
     </div>
   );
 };
