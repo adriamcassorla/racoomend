@@ -17,7 +17,7 @@ const AddGroup = ({ setDialog }: Props) => {
     setDialog(false);
     e.preventDefault();
     try {
-      const rawGroup = await fetch("/api/group/newGroup", {
+      const rawGroup = await fetch("/api/group", {
         method: "POST",
         headers: {
           "content-type": "application/json",

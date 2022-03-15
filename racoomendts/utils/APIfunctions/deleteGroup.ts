@@ -1,6 +1,6 @@
-const deleteGroup = async ( id: string ) => {
+const deleteGroup = async (id: string) => {
   try {
-    const rawGroup = await fetch('/api/recommendation/group', {
+    const rawGroup = await fetch('/api/group', {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
