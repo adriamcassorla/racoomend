@@ -3,13 +3,7 @@ import "@reach/dialog/styles.css";
 import Add from "../pages/add";
 import AddGroup from "../pages/group/addGroup";
 
-type Props = {
-  category: string;
-  showDialog: boolean;
-  currentGroup?: string;
-  // Proper way of typing. Using Function for this same things esta feo.
-  setDialog: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import Props from "../types/ModalProps";
 
 const ModalComponent = ({
   category,
