@@ -18,12 +18,12 @@ git clone https://github.com/adriamcassorla/racoomend
 
 2. Install dependencies
 ```
-yarn install
+npm i
 ```
 
-3. Run the app using yarn
+3. Run the app using npm
 ```
-yarn dev
+npm run dev
 ```
 4. Open on localhost to see your changes
 
